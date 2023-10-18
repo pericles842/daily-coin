@@ -1,9 +1,14 @@
+<p-overlayPanel #op>
+ <div *ngFor="let banco of bancos ;  let i = index">
+  <p class=" bancosBold p-2">{{banco.title}}</p>
+ </div>
+</p-overlayPanel>
 <div class="bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">
   <div class="flex justify-content-between">
     <p>Ultima fecha : {{entidadBancaria.last_update}} </p>
-    <span class="pi pi-sort-alt " style="font-size: 1.5rem"></span>
+    <span (click)="op.toggle($event)" class="pi pi-sort-alt circle p-2 " style="font-size: 1.5rem"></span>
   </div>
   <h1> {{entidadBancaria.title}} </h1>
   <h3 class="text-bold"> Tasa: {{entidadBancaria.price}} Bs</h3>
 </div>
-<app-loading [loading]="loading"></app-loading> 
+<app-loading [loading]="loading"></app-loading>

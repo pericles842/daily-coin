@@ -25,12 +25,21 @@ export class StatusCoinComponent implements OnInit {
    */
   entidadBancaria: Bank = new Bank();
 
+  /**
+   * Bancos disponibles
+   *
+   * @type {Bank[]}
+   * @memberof StatusCoinComponent
+   */
+  bancos: Bank[] = [];
+
   loading: boolean = false;
   constructor(
     private coinService: CoinService
   ) { }
 
   ngOnInit() {
+    this.listBanks();
     this.getBank(this.typeStatus);
 
   }
@@ -52,5 +61,44 @@ export class StatusCoinComponent implements OnInit {
     }
     );
   }
+  /**
+   *Lista los bancos dispobiblesd
+   *
+   * @memberof StatusCoinComponent
+   */
+  listBanks() {
+    this.loading = true;
+    this.coinService.listBankingEntities().subscribe({
+      next: (res: any) => {
 
+        this.bancos.push(res.monitors);
+
+        [res.monitors].forEach((entidad: Bank) => {
+          Object.keys(entidad).forEach((key) => {
+            let banco = new Bank;
+            banco.key = key
+            banco.title = this.uppercaseAndReplaceString(key);
+
+            this.bancos.push(banco);
+          })
+        });
+
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
+      }
+    });
+  }
+  /**
+   * trasforma el primer carácter en mayúscula y quita , o elementos 
+   * @param text string
+   * @returns string
+   */
+  uppercaseAndReplaceString(text: string) {
+    let word = text.charAt(0).toUpperCase() + text.slice(1);
+    console.log(text);
+    
+    return word.replaceAll('_', ' ')
+  }
 }

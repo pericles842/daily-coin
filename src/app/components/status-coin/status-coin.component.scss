@@ -1,0 +1,11 @@
+.circle:hover {
+    border-radius: 50%;
+    background-color: var(--primary-color-text);
+    color: var(--primary-color);
+    padding: 0.5rem;
+}
+.bancosBold:hover{
+    background-color: var(--primary-color);
+    color: var(--surface-0);
+    font-weight: 900;
+}
