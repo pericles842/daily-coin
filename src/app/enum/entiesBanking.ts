@@ -1,0 +1,20 @@
+export enum BankingRole {
+
+    amazon_gift_card = 'amazon_gift_card',
+    bancamiga = 'bancamiga',
+    banco_de_venezuela = 'banco_de_venezuela',
+    banco_mercantil = 'banco_mercantil',
+    banco_nacional_de_credito_bnc = 'banco_nacional_de_credito_bnc',
+    banesco = 'banesco',
+    banplus = 'banplus',
+    bbva_provincial = 'bbva_provincial',
+    bcv = 'bcv',
+    binance = 'binance',
+    cripto_dolar = 'cripto_dolar',
+    dolar_today = 'dolar_today',
+    enparalelovzla = 'enparalelovzla',
+    otras_instituciones = 'otras_instituciones',
+    paypal = 'paypal',
+    skrill = 'skrill',
+    uphold = 'uphold',
+}
