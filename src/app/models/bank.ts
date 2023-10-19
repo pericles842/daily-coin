@@ -6,7 +6,7 @@ export class Bank {
   price_old = 0;
   title = '';
   type = '';
-  key ?= '';
+  key: any;
 
 
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
@@ -24,7 +25,6 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   entidadBancaria: Bank = new Bank();
-
   /**
    * Bancos disponibles
    *
@@ -71,13 +71,21 @@ export class StatusCoinComponent implements OnInit {
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
 
-        this.bancos.push(res.monitors);
+        res.monitors;
 
-        [res.monitors].forEach((entidad: Bank) => {
-          Object.keys(entidad).forEach((key) => {
-            let banco = new Bank;
-            banco.key = key
-            banco.title = this.uppercaseAndReplaceString(key);
+        [res.monitors].forEach((entidad: any) => {
+          Object.keys(entidad).forEach((key: string) => {
+
+            const banco = new Bank();
+            const entidadKey = entidad[key];
+
+            banco.last_update = entidadKey.last_update;
+            banco.price = entidadKey.price;
+            banco.price_old = entidadKey.price_old;
+            banco.title = entidadKey.title;
+            banco.type = entidadKey.type;
+            banco.key = key;
+
 
             this.bancos.push(banco);
           })
@@ -91,14 +99,14 @@ export class StatusCoinComponent implements OnInit {
     });
   }
   /**
-   * trasforma el primer carácter en mayúscula y quita , o elementos 
-   * @param text string
-   * @returns string
+   *Cambia de banco al seleccionarlo en el botón
+   *
+   * @param {number} index
+   * @param {OverlayPanel} op
+   * @memberof StatusCoinComponent
    */
-  uppercaseAndReplaceString(text: string) {
-    let word = text.charAt(0).toUpperCase() + text.slice(1);
-    console.log(text);
-    
-    return word.replaceAll('_', ' ')
+  changeBank(index: number, op: OverlayPanel) {
+    this.entidadBancaria = this.bancos[index];
+    op.hide()
   }
 }
