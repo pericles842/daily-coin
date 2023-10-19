@@ -1,3 +1,10 @@
 <div class="p-3">
-  <app-status-coin [typeStatus]="entidadBancaria"></app-status-coin>
+  <app-status-coin (bankingEntity)="currentBankingEntity($event)" [typeStatus]="entidadBancaria"></app-status-coin>
+  <div class="mt-6">
+    <app-conversion-coin [banco]="bancoActual"></app-conversion-coin>
+  </div>
 </div>
+<!-- el fixed crea el efecto de tobar -->
+
+<app-topbar (config)="topbarRutes($event)" (pago_movil)="topbarRutes($event)" (history)="topbarRutes($event)"
+  (calculator)="topbarRutes($event)"></app-topbar>

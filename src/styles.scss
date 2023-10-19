@@ -1,13 +1,22 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-   
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
-input[type="text"] {
+
+input[type="text"],[type="number"] {
   box-shadow: none !important;
   border-width: 2px;
 }
+
+.circle:hover {
+  border-radius: 50%;
+  background-color: var(--primary-color-text);
+  color: var(--primary-color);
+  padding: 0.5rem;
+}
+
 @import 'node_modules/primeng/resources/primeng.min.css';
 @import 'node_modules/primeflex/primeflex.css';
 //teema

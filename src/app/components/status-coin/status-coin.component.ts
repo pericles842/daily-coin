@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
@@ -24,6 +24,7 @@ export class StatusCoinComponent implements OnInit {
    * @type {Bank}
    * @memberof StatusCoinComponent
    */
+  @Output() bankingEntity = new EventEmitter<Bank>();
   entidadBancaria: Bank = new Bank();
   /**
    * Bancos disponibles
@@ -53,6 +54,7 @@ export class StatusCoinComponent implements OnInit {
     this.coinService.getBanking(bankingRole).subscribe({
       next: (res: any) => {
         this.entidadBancaria = res;
+        this.bankingEntity.emit(this.entidadBancaria)
         this.loading = false;
       },
       error: (err) => {
@@ -108,5 +110,6 @@ export class StatusCoinComponent implements OnInit {
   changeBank(index: number, op: OverlayPanel) {
     this.entidadBancaria = this.bancos[index];
     op.hide()
+    this.bankingEntity.emit(this.entidadBancaria)
   }
 }
