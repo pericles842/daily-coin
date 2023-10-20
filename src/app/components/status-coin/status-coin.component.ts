@@ -54,8 +54,8 @@ export class StatusCoinComponent implements OnInit {
     this.coinService.getBanking(bankingRole).subscribe({
       next: (res: any) => {
         this.entidadBancaria = res;
-        this.bankingEntity.emit(this.entidadBancaria)
         this.loading = false;
+        this.bankingEntity.emit(this.entidadBancaria)
       },
       error: (err) => {
         this.loading = false;

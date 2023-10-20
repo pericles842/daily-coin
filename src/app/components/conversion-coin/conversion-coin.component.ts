@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CurrencyConversion } from 'src/app/models/CurrencyConversion';
 import { Bank } from 'src/app/models/bank';
 
@@ -7,7 +7,8 @@ import { Bank } from 'src/app/models/bank';
   templateUrl: './conversion-coin.component.html',
   styleUrls: ['./conversion-coin.component.scss']
 })
-export class ConversionCoinComponent implements OnInit {
+export class ConversionCoinComponent implements OnInit, OnChanges {
+
   @Input() banco!: Bank;
 
   /**
@@ -17,6 +18,7 @@ export class ConversionCoinComponent implements OnInit {
    * @memberof ConversionCoinComponent
    */
   conversionMoney: CurrencyConversion = new CurrencyConversion();
+
   /**
    *Valida si esta en bolivares a dólares o dólares a bolivares
    *
@@ -33,9 +35,16 @@ export class ConversionCoinComponent implements OnInit {
       this.conversionMoney.money_conversion = this.banco.price
       this.moneyConversion(this.banco.price, this.bsToDollar)
     }, 1000);
-    
-    
+
+
     this.loading = false;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes["banco"].currentValue.key);
+    if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key   ) {
+      this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
+    }
   }
   /**
    *Realiza la conversion de dollar a bolivares y diversa
@@ -49,9 +58,8 @@ export class ConversionCoinComponent implements OnInit {
       this.conversionMoney.total = parseFloat((money / this.banco.price).toFixed(2));
     } else {
       this.conversionMoney.total = parseFloat((money * this.banco.price).toFixed(2));
-    
     }
-    
+
   }
   /**
    *Cambia el campo de bs a dollar y diversa
@@ -72,4 +80,10 @@ export class ConversionCoinComponent implements OnInit {
   onInputChange(event: number) {
     this.moneyConversion(event, this.bsToDollar)
   }
+
+  // get changeStatusCoin() {
+  //   if (this.banco.price != this.banco_anterior.price) {
+  //     return this.changeCurrency()
+  //   }
+  // }
 }

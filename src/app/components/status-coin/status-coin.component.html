@@ -1,11 +1,14 @@
 <p-overlayPanel #op>
- <div *ngFor="let banco of bancos ;  let i = index">
-  <p (click)="changeBank(i,op)"class="cursor-pointer bancosBold p-2">{{banco.title}}</p>
- </div>
+  <div *ngFor="let banco of bancos ;  let i = index">
+    <p (click)="changeBank(i,op)" class="cursor-pointer bancosBold p-2">{{banco.title}}</p>
+  </div>
 </p-overlayPanel>
 <div class="bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">
   <div class="flex justify-content-between">
-    <p>Ultima fecha : {{entidadBancaria.last_update}} </p>
+    <div class="flex flex-column">
+      <p>Ultima actualización</p>
+      <p>{{entidadBancaria.last_update}}</p>
+    </div>
     <span (click)="op.toggle($event)" class="pi pi-sort-alt circle p-2 cursor-pointer" style="font-size: 1.5rem"></span>
   </div>
   <h1> {{entidadBancaria.title}} </h1>

@@ -13,6 +13,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TopbarComponent } from './components/topbar/topbar.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
     BrowserAnimationsModule,
     FormsModule,
     AutoFocusModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
