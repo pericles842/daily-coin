@@ -33,7 +33,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
       this.loading = true;
       this.conversionMoney.money_conversion = this.banco.price
       this.moneyConversion(this.banco.price, this.bsToDollar)
-      this.loading= false;
+      this.loading = false;
     }
     this.loading = false;
   }

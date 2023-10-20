@@ -26,6 +26,6 @@ export class CoinService {
    * @memberof CoinService
    */
   getBanking(entity: BankingRole) {
-    return this.http.get(environment.url + `api/v1/dollar/unit/${entity}`)
+    return this.http.get(environment.url + `api/v1/dollar/exchangemonitor/${entity}`)
   }
 }

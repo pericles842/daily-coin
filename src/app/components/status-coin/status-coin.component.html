@@ -17,11 +17,12 @@
 
 <div class="flex justify-content-between align-items-center  mt-3 gap-3">
   <button pButton pRipple class="pi pi-share-alt shadow-4 "></button>
-  <div class="flex align-items-center gap-3">
-    <p class="font-semibold flex align-items-center gap-3" style="font-size: 8vw;" [ngClass]="changeColorStatistics">
+  <div class="flex align-items-center gap-1">
+    <p class="font-semibold flex align-items-center gap-3 text-4xl" [ngClass]="changeColorStatistics">
       {{entidadBancaria.percent}}</p>
-      <p [ngClass]="changeColorStatistics"class="scalein animation-iteration-infinite  animation-duration-3000 " >{{entidadBancaria.symbol}}</p>
+    <p [ngClass]="changeColorStatistics" class="scalein animation-iteration-infinite  animation-duration-3000 ">
+      {{entidadBancaria.symbol}}</p>
   </div>
   <button pButton pRipple class="pi pi-replay shadow-4"></button>
 </div>
-  <app-loading [loading]="loading"></app-loading> 
+<app-loading [loading]="loading"></app-loading>
