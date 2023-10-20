@@ -3,6 +3,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
+import { MessageServiceSocial } from 'src/app/services/message';
 
 @Component({
   selector: 'app-status-coin',
@@ -36,7 +37,8 @@ export class StatusCoinComponent implements OnInit {
 
   loading: boolean = false;
   constructor(
-    private coinService: CoinService
+    private coinService: CoinService,
+    private _messageServiceSocial: MessageServiceSocial
   ) { }
 
   ngOnInit() {
@@ -52,10 +54,10 @@ export class StatusCoinComponent implements OnInit {
   getBank(bankingRole: BankingRole): any {
     this.loading = true;
     this.coinService.getBanking(bankingRole).subscribe({
-      next: (res: any) => {        
+      next: (res: any) => {
         this.entidadBancaria = res;
         this.loading = false;
-        
+
         this.bankingEntity.emit(this.entidadBancaria)
       },
       error: (err) => {
@@ -128,5 +130,16 @@ export class StatusCoinComponent implements OnInit {
     } else {
       return 'text-color'
     }
+  }
+  /**
+   *Comparte el estatus del dolar e una red social
+   *
+   * @memberof StatusCoinComponent
+   */
+  shareRateStatus() {
+    let message = `🏦 ${this.entidadBancaria.title}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.last_update}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percent}  Bs ${this.entidadBancaria.change}\n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
+
+
+    this._messageServiceSocial.sendEmailWhatsApp(encodeURIComponent(message));
   }
 }

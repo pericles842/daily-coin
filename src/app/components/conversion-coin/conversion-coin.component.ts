@@ -28,6 +28,8 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   bsToDollar: boolean = true;
   loading: boolean = false;
 
+  constructor(
+  ) { }
   ngOnInit() {
     if (this.banco !== undefined) {
       this.loading = true;
