@@ -14,6 +14,7 @@ import { AutoFocusModule } from 'primeng/autofocus';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     AutoFocusModule,
     ProgressBarModule,
-    ToastModule
+    ToastModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

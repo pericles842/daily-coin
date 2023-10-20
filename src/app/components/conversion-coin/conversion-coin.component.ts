@@ -29,21 +29,22 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   loading: boolean = false;
 
   ngOnInit() {
-    setTimeout(() => {
-
+    if (this.banco !== undefined) {
       this.loading = true;
       this.conversionMoney.money_conversion = this.banco.price
       this.moneyConversion(this.banco.price, this.bsToDollar)
-    }, 1000);
-
-
+      this.loading= false;
+    }
     this.loading = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes["banco"].currentValue.key);
-    if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key   ) {
+    if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key) {
       this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
+    } else if (this.banco) {
+      this.loading = true;
+      this.conversionMoney.money_conversion = this.banco.price
+      this.moneyConversion(this.banco.price, this.bsToDollar)
     }
   }
   /**
@@ -80,10 +81,4 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   onInputChange(event: number) {
     this.moneyConversion(event, this.bsToDollar)
   }
-
-  // get changeStatusCoin() {
-  //   if (this.banco.price != this.banco_anterior.price) {
-  //     return this.changeCurrency()
-  //   }
-  // }
 }

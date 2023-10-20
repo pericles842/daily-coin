@@ -69,7 +69,6 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   listBanks() {
-    this.loading = true;
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
 
@@ -87,16 +86,18 @@ export class StatusCoinComponent implements OnInit {
             banco.title = entidadKey.title;
             banco.type = entidadKey.type;
             banco.key = key;
+            banco.color = entidadKey.color;
+            banco.percent = entidadKey.percent;
+            banco.symbol = entidadKey.symbol;
+            banco.change = entidadKey.change;
 
 
             this.bancos.push(banco);
           })
         });
 
-        this.loading = false;
       },
       error: (err) => {
-        this.loading = false;
       }
     });
   }
@@ -111,5 +112,20 @@ export class StatusCoinComponent implements OnInit {
     this.entidadBancaria = this.bancos[index];
     op.hide()
     this.bankingEntity.emit(this.entidadBancaria)
+  }
+  /**
+   *color roojo o verde en base al porcentaje del dolar
+   *
+   * @readonly
+   * @memberof StatusCoinComponent
+   */
+  get changeColorStatistics() {
+    if (this.entidadBancaria.symbol === '▼') {
+      return 'text-red-400 '
+    } else if (this.entidadBancaria.symbol === '▲') {
+      return 'text-green-400 '
+    } else {
+      return 'text-color'
+    }
   }
 }

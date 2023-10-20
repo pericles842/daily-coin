@@ -1,4 +1,3 @@
-import { BankingRole } from "../enum/entiesBanking";
 
 export class Bank {
   last_update = '';
@@ -7,6 +6,10 @@ export class Bank {
   title = '';
   type = '';
   key: any;
+  color: string = ''
+  percent: string = ''
+  symbol: string = ''
+  change: string = ''
 
 
 }
