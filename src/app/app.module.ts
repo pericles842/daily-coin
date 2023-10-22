@@ -18,7 +18,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
 import { AppRoutingModule } from './routes';
 import { HomeComponent } from './pages/home/home.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
-
+import { ConfigBancosComponent } from './components/config-bancos/config-bancos.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ConfigurationComponent } from './components/configuration/configuration
     LoadingComponent,
     TopbarComponent,
     HomeComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ConfigBancosComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { ConfigurationComponent } from './components/configuration/configuration
     ProgressBarModule,
     ToastModule,
     ButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

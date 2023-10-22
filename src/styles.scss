@@ -9,7 +9,9 @@ input[type="text"],[type="number"] {
   box-shadow: none !important;
   border-width: 2px;
 }
-
+.p-checkbox-box.p-highlight {
+  box-shadow: none !important;
+}
 .circle:hover {
   border-radius: 50%;
   background-color: var(--primary-color-text);
