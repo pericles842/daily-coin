@@ -1,7 +1,11 @@
 <div class="fixed bottom-0 w-full text-center gap-2 bg-primary py-3 ">
-  <i (click)="config.emit()" class="pi pi-cog " style="font-size: 2rem; padding: 0px 4vw;"></i>
+  <!-- configuración -->
+  <i routerLink="/config" class="pi pi-cog " style="font-size: 2rem; padding: 0px 4vw;"></i>
   <!-- <i (click)="pago_movil.emit()" class="pi pi-wallet" style="font-size: 2rem; padding: 0px 4vw;"></i> -->
-  <i (click)="home.emit()" class="pi pi-home" style="font-size: 2rem; padding: 0px 4vw;"></i>
-  <i (click)="calculator.emit()" class="pi pi-calculator" style="font-size: 2rem; padding: 0px 4vw;"></i>
-  <i (click)="history.emit()" class="pi pi-history" style="font-size: 2rem; padding: 0px 4vw;"></i>
+  <!-- home -->
+  <i routerLink="/home"  class="pi pi-home" style="font-size: 2rem; padding: 0px 4vw;"></i>
+  <!-- calculadora -->
+  <i class="pi pi-calculator" style="font-size: 2rem; padding: 0px 4vw;"></i>
+  <!-- historial de tasas -->
+  <i class="pi pi-history" style="font-size: 2rem; padding: 0px 4vw;"></i>
 </div>
