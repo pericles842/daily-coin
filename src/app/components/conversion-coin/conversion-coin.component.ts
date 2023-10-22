@@ -42,6 +42,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key) {
+      this.conversionMoney.money_conversion = this.banco.price;
       this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
     } else if (this.banco) {
       this.loading = true;

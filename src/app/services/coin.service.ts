@@ -18,7 +18,7 @@ export class CoinService {
    * @memberof CoinService
    */
   listBankingEntities() {
-    return this.http.get(environment.url + 'api/v1/dollar/exchangemonitor')
+    return this.http.get(environment.url + 'api/v1/dollar/page?page=exchangemonitor')
   }
   /**
    *Obtiene una entidad bancaria
@@ -26,6 +26,6 @@ export class CoinService {
    * @memberof CoinService
    */
   getBanking(entity: BankingRole) {
-    return this.http.get(environment.url + `api/v1/dollar/exchangemonitor/${entity}`)
+    return this.http.get(environment.url + `api/v1/dollar/page?page=exchangemonitor&monitor=${entity}`)
   }
 }
