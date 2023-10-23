@@ -1,6 +1,8 @@
-<div class="flex  justify-content-evenly flex-wrap p-1 ">
-  <div class="flex justify-content-center  shadow-4  gap-2 bg-primary p-1 m-1 border-round  " *ngFor="let banco of banksTotals">
-    <p-checkbox [value]="banco.key" [inputId]="banco.key"></p-checkbox>
+<div  class="flex  justify-content-evenly flex-wrap p-1 ">
+  <div class="flex justify-content-center  shadow-4  gap-2  p-1 m-1 border-round "
+    [ngClass]="banco.active ? 'bg-green-400':'bg-primary'" *ngFor="let banco of BancosEnUso; let i = index">
+    <p-checkbox [ngClass]="banco.active ? 'bg-green-400':'bg-primary'" (onChange)="banksSelected($event,i)"
+      [(ngModel)]="banco.active" [value]="banco" [binary]="true" [inputId]="banco.key"></p-checkbox>
     <label class="text-lg" [for]="banco.key">{{banco.title}}</label>
   </div>
 </div>

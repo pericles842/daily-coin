@@ -10,6 +10,5 @@ export class Bank {
   percent: string = ''
   symbol: string = ''
   change: string = ''
-
-
+  active: boolean = false
 }

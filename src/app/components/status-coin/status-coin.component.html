@@ -1,6 +1,6 @@
 <p-overlayPanel #op>
-  <div *ngFor="let banco of bancos ;  let i = index">
-    <p (click)="changeBank(i,op)" class="cursor-pointer bancosBold p-2">{{banco.title}}</p>
+  <div *ngFor="let banco of Bancos ;  let i = index">
+    <p *ngIf="banco.active" (click)="changeBank(i,op)" class="cursor-pointer bancosBold p-2">{{banco.title}}</p>
   </div>
 </p-overlayPanel>
 <div class="bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">

@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environment';
 import { BankingRole } from '../enum/entiesBanking';
+import { Bank } from '../models/bank';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoinService {
-
+  /**
+   *Lista de bancos configurables
+   *
+   * @type {Bank[]}
+   * @memberof CoinService
+   */
+  listBanksConfiguration: Bank[] = []
   constructor(
     private http: HttpClient,
   ) { }
@@ -26,6 +33,6 @@ export class CoinService {
    * @memberof CoinService
    */
   getBanking(entity: BankingRole) {
-    return this.http.get(environment.url + `api/v1/dollar/page?page=exchangemonitor&monitor=${entity}`)
+    return this.http.get(environment.url + `api/v1/dollar/page?page=exchangemonitor&monitor=${entity}`);
   }
 }

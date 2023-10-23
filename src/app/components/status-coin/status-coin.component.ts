@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
 import { MessageServiceSocial } from 'src/app/services/message';
+import { ConfigBancosComponent } from '../config-bancos/config-bancos.component';
 
 @Component({
   selector: 'app-status-coin',
@@ -26,14 +27,15 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   @Output() bankingEntity = new EventEmitter<Bank>();
-  entidadBancaria: Bank = new Bank();
+
   /**
-   * Bancos disponibles
+   *Parametro de entrada de  una entidad bacnararia
    *
-   * @type {Bank[]}
+   * @type {Bank}
    * @memberof StatusCoinComponent
    */
-  bancos: Bank[] = [];
+  entidadBancaria: Bank = new Bank();
+
 
   loading: boolean = false;
   constructor(
@@ -72,6 +74,15 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   listBanks() {
+    const validBankingRoles = [
+      BankingRole.banco_de_venezuela,
+      BankingRole.bcv,
+      BankingRole.enparalelovzla,
+      BankingRole.monitor_dolar_venezuela,
+      BankingRole.paypal,
+      BankingRole.petro,
+      BankingRole.zinli
+    ];
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
 
@@ -93,9 +104,10 @@ export class StatusCoinComponent implements OnInit {
             banco.percent = entidadKey.percent;
             banco.symbol = entidadKey.symbol;
             banco.change = entidadKey.change;
+            
+            if (validBankingRoles.includes(banco.key))  banco.active = true;
 
-
-            this.bancos.push(banco);
+            this.coinService.listBanksConfiguration.push(banco)
           })
         });
 
@@ -112,7 +124,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   changeBank(index: number, op: OverlayPanel) {
-    this.entidadBancaria = this.bancos[index];
+    this.entidadBancaria = this.coinService.listBanksConfiguration[index];
     op.hide()
     this.bankingEntity.emit(this.entidadBancaria)
   }
@@ -141,5 +153,14 @@ export class StatusCoinComponent implements OnInit {
 
 
     this._messageServiceSocial.sendEmailWhatsApp(encodeURIComponent(message));
+  }
+  /**
+   *Retorna los bancos configurables
+   *
+   * @readonly
+   * @memberof StatusCoinComponent
+   */
+  get Bancos() {
+    return this.coinService.listBanksConfiguration;
   }
 }
