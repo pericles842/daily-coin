@@ -44,7 +44,9 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.listBanks();
+    
+    //SI EL ARREGLO DE BANCOS CONFIG ESTA vacio no consume el servicio, para que no se duplique cada vez qu carga
+    if (this.coinService.listBanksConfiguration.length === 0) this.listBanks();
     this.getBank(this.typeStatus);
 
   }
@@ -104,8 +106,8 @@ export class StatusCoinComponent implements OnInit {
             banco.percent = entidadKey.percent;
             banco.symbol = entidadKey.symbol;
             banco.change = entidadKey.change;
-            
-            if (validBankingRoles.includes(banco.key))  banco.active = true;
+
+            if (validBankingRoles.includes(banco.key)) banco.active = true;
 
             this.coinService.listBanksConfiguration.push(banco)
           })
