@@ -20,6 +20,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { ConfigBancosComponent } from './components/config-bancos/config-bancos.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     TopbarComponent,
     HomeComponent,
     ConfigurationComponent,
-    ConfigBancosComponent
+    ConfigBancosComponent,
+    HistoryCoinComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     ToastModule,
     ButtonModule,
     AppRoutingModule,
-    CheckboxModule
+    CheckboxModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

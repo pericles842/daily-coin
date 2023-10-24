@@ -35,4 +35,12 @@ export class CoinService {
   getBanking(entity: BankingRole) {
     return this.http.get(environment.url + `api/v1/dollar/page?page=exchangemonitor&monitor=${entity}`);
   }
+  /**
+   *historial de los precios del dolar en la semana
+   *
+   * @memberof CoinService
+   */
+  historyEntities() {
+    return this.http.get(environment.url + 'api/v1/dollar/history');
+  }
 }
