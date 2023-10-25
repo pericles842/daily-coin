@@ -23,6 +23,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
 import { CalendarModule } from 'primeng/calendar';
 import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa-personalizada.component';
+import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa
     ConfigurationComponent,
     ConfigBancosComponent,
     HistoryCoinComponent,
-    TasaPersonalizadaComponent
+    TasaPersonalizadaComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,11 @@ import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa
     ButtonModule,
     AppRoutingModule,
     CheckboxModule,
-    CalendarModule
+    CalendarModule,
+    MessagesModule
+    
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

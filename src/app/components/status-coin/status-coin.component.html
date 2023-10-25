@@ -17,7 +17,7 @@
 
 <div class="flex justify-content-between align-items-center  mt-3 gap-3">
   <!-- Compartir -->
-  <button (click)="shareRateStatus()" pButton pRipple class=" pi pi-share-alt shadow-4 "></button>
+  <button (click)="shareRateStatus()" pButton pRipple class=" pi pi-share-alt text-lg shadow-4 "></button>
 
   <div class="flex align-items-center gap-1">
     <p class="font-semibold flex align-items-center gap-3 text-4xl" [ngClass]="changeColorStatistics">
@@ -26,6 +26,6 @@
       {{entidadBancaria.symbol}}</p>
   </div>
   <!-- Restablecer -->
-  <button pButton pRipple class="pi pi-replay shadow-4"></button>
+  <button  pButton pRipple class="pi pi-replay text-lg shadow-4"></button>
 </div>
 <app-loading [loading]="loading"></app-loading>

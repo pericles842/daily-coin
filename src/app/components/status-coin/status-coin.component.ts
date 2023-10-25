@@ -44,7 +44,7 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     //SI EL ARREGLO DE BANCOS CONFIG ESTA vacio no consume el servicio, para que no se duplique cada vez qu carga
     if (this.coinService.listBanksConfiguration.length === 0) this.listBanks();
     this.getBank(this.typeStatus);
@@ -165,4 +165,13 @@ export class StatusCoinComponent implements OnInit {
   get Bancos() {
     return this.coinService.listBanksConfiguration;
   }
+  /**
+   *Refresca el servicio
+   *
+   * @memberof StatusCoinComponent
+   */
+  // refreshStatus() {
+  //   this.listBanks()
+  //   this.getBank(this.entidadBancaria.key);
+  // }
 }
