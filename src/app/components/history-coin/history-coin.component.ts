@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoinService } from 'src/app/services/coin.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CoinService } from 'src/app/services/coin.service';
 })
 export class HistoryCoinComponent implements OnInit {
   history: any[] = []
-
+  loading: boolean = false
   constructor(
     private coinService: CoinService
   ) { }
@@ -17,11 +17,15 @@ export class HistoryCoinComponent implements OnInit {
   }
 
   getHistory() {
+    this.loading = true
     this.coinService.historyEntities().subscribe({
       next: (results: any) => {
         results.results
         this.history = results.results
-
+        this.loading = false
+      },
+      error: (erro) => {
+        this.loading = false
       }
     })
   }

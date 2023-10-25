@@ -22,6 +22,7 @@ import { ConfigBancosComponent } from './components/config-bancos/config-bancos.
 import { CheckboxModule } from 'primeng/checkbox';
 import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
 import { CalendarModule } from 'primeng/calendar';
+import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa-personalizada.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CalendarModule } from 'primeng/calendar';
     HomeComponent,
     ConfigurationComponent,
     ConfigBancosComponent,
-    HistoryCoinComponent
+    HistoryCoinComponent,
+    TasaPersonalizadaComponent
   ],
   imports: [
     BrowserModule,

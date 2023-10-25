@@ -4,6 +4,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
 import { HomeComponent } from './pages/home/home.component';
 import { ConfigBancosComponent } from './components/config-bancos/config-bancos.component';
 import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
+import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa-personalizada.component';
 
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'config', component: ConfigurationComponent },
     { path: 'config/bancos-config', component: ConfigBancosComponent },
+    { path: 'config/tasa-personalizada', component: TasaPersonalizadaComponent },
     { path: 'history', component: HistoryCoinComponent },
 
 ];
