@@ -44,9 +44,12 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
+    if (sessionStorage.getItem('listBanks') ) {
+      this.coinService.listBanksConfiguration =  JSON.parse(sessionStorage.getItem('listBanks')  as string) ;
+    } else this.listBanks();
 
-    //SI EL ARREGLO DE BANCOS CONFIG ESTA vacio no consume el servicio, para que no se duplique cada vez qu carga
-    if (this.coinService.listBanksConfiguration.length === 0) this.listBanks();
     this.getBank(this.typeStatus);
 
   }
@@ -109,7 +112,9 @@ export class StatusCoinComponent implements OnInit {
 
             if (validBankingRoles.includes(banco.key)) banco.active = true;
 
-            this.coinService.listBanksConfiguration.push(banco)
+            this.coinService.listBanksConfiguration.push(banco);
+            let banks = JSON.stringify(this.coinService.listBanksConfiguration)
+            sessionStorage.setItem('listBanks', banks);
           })
         });
 
