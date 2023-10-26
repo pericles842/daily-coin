@@ -5,18 +5,19 @@
   <div class="grid">
     <div class="col-12 my-3">
       <span class="p-float-label">
-        <input name="n" type="text" class="w-full" pInputText id="name" [(ngModel)]="newMonto.title" />
+        <input required  name="n" type="text" class="w-full" pInputText id="name" [(ngModel)]="newMonto.title" />
         <label class="text-base" htmlFor="name">Nombre del monto</label>
       </span>
     </div>
     <div class="col-12 my-1">
       <span class="p-float-label">
-        <input name="dolla" [(ngModel)]="newMonto.price" class="w-full" type="number" pInputText id="dolla" />
+        <input  required name="dolla" [(ngModel)]="newMonto.price" class="w-full" type="number" pInputText id="dolla" />
         <label class="text-base" htmlFor="dolla">Precio de dólar</label>
       </span>
     </div>
     <div class="col-12">
-      <button (click)="saveCup()" pButton pRipple label="Guardar" class="bg-primary w-full"></button>
+      <button [disabled]="!newMonto.title.trim() || !newMonto.price " (click)="saveCup()" pButton pRipple label="Guardar"
+        class="bg-primary w-full"></button>
     </div>
   </div>
 </form>

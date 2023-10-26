@@ -5,6 +5,8 @@ import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
 import { MessageServiceSocial } from 'src/app/services/message';
 import { ConfigBancosComponent } from '../config-bancos/config-bancos.component';
+import { filter } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-status-coin',
@@ -40,14 +42,15 @@ export class StatusCoinComponent implements OnInit {
   loading: boolean = false;
   constructor(
     private coinService: CoinService,
-    private _messageServiceSocial: MessageServiceSocial
+    private _messageServiceSocial: MessageServiceSocial,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
-    
+
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
-    if (sessionStorage.getItem('listBanks') ) {
-      this.coinService.listBanksConfiguration =  JSON.parse(sessionStorage.getItem('listBanks')  as string) ;
+    if (sessionStorage.getItem('listBanks')) {
+      this.coinService.listBanksConfiguration = JSON.parse(sessionStorage.getItem('listBanks') as string);
     } else this.listBanks();
 
     this.getBank(this.typeStatus);
@@ -78,7 +81,7 @@ export class StatusCoinComponent implements OnInit {
    *
    * @memberof StatusCoinComponent
    */
-  listBanks() {
+  listBanks():void {
     const validBankingRoles = [
       BankingRole.banco_de_venezuela,
       BankingRole.bcv,
@@ -114,7 +117,7 @@ export class StatusCoinComponent implements OnInit {
 
             this.coinService.listBanksConfiguration.push(banco);
             let banks = JSON.stringify(this.coinService.listBanksConfiguration)
-            sessionStorage.setItem('listBanks', banks);
+             sessionStorage.setItem('listBanks', banks);
           })
         });
 
@@ -171,12 +174,55 @@ export class StatusCoinComponent implements OnInit {
     return this.coinService.listBanksConfiguration;
   }
   /**
-   *Refresca el servicio
+   *Desactiva un banco de la lista
+   *
+   * @param {number} index indice
+   * @memberof StatusCoinComponent
+   */
+  deleteBank(index: number) {
+
+    //INDEX DE LOS BACOS LOCALES
+    let listBanksConfiguration: Bank = this.coinService.listBanksConfiguration[index];
+    //ARREGLO DE BANCOS GUARDADOS
+    let banksStorage: Bank[] = JSON.parse(sessionStorage.getItem('listBanks') as string);
+
+    //se desactivan
+    this.coinService.listBanksConfiguration[index].active = false;
+    banksStorage[index].active = false
+
+    //se filtra los activos
+    let filtersBanks: Bank[] = this.coinService.listBanksConfiguration.filter(item => item.active == true);
+
+    //si solo jhay un banco se vuelve activar e inpida que no se desactive
+
+    if (filtersBanks.length < 1) {
+      //como previamente se habia desactivado se vuelve activar
+      this.coinService.listBanksConfiguration[index].active = true;
+      banksStorage[index].active = true
+
+      //mensaje
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No puedes eliminar todos lo bancos' });
+      setTimeout(() => {
+        return this.messageService.clear();
+      }, 2000);
+    }
+    //se guarda en el local
+    sessionStorage.setItem('listBanks', JSON.stringify(banksStorage));
+
+
+    const indexRandom: number = Math.floor(Math.random() * (filtersBanks.length - 1 - 0)) + 0;
+
+    //SI el banco es igual al seleccionado entonces cambiara a uno radon
+    if (listBanksConfiguration.title === this.entidadBancaria.title) this.entidadBancaria = filtersBanks[indexRandom];
+
+  }
+  /**
+   *Refresca los servicios
    *
    * @memberof StatusCoinComponent
    */
-  // refreshStatus() {
-  //   this.listBanks()
-  //   this.getBank(this.entidadBancaria.key);
-  // }
+  refreshCoin() {
+    sessionStorage.clear();
+    location.reload();
+  }
 }

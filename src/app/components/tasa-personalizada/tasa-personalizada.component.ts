@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Message, MessageService } from 'primeng/api'; import { timeout } from 'rxjs';
-;
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
+;
 
 @Component({
   selector: 'app-tasa-personalizada',
@@ -19,7 +20,8 @@ export class TasaPersonalizadaComponent {
    */
   constructor(
     private coinService: CoinService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: Router
   ) { }
   /**
    *guardar monto nuevo
@@ -30,10 +32,16 @@ export class TasaPersonalizadaComponent {
     this.newMonto.active = true;
     this.newMonto.last_update = new Date().toString();
     this.coinService.listBanksConfiguration.push(this.newMonto);
-    this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Guardado' });
+    this.messageService.add({ severity: 'success', summary: '', detail: 'Guardado con éxito' });
 
-    setInterval(() => {
+    let banksStorage = JSON.parse(sessionStorage.getItem('listBanks') as string)
+    banksStorage.push(this.newMonto)
+    sessionStorage.setItem('listBanks', JSON.stringify(banksStorage));
+
+    setTimeout(() => {
       this.messageService.clear();
-    }, 1000);
+      this.route.navigateByUrl('/home')
+    }, 2000);
+  
   }
 }
