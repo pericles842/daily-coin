@@ -15,7 +15,16 @@ export class CoinService {
    * @type {Bank[]}
    * @memberof CoinService
    */
-  listBanksConfiguration: Bank[] = []
+  listBanksConfiguration: Bank[] = [];
+  /**
+   *conexión a bas de datos
+   *
+   * @private
+   * @type {*}
+   * @memberof CoinService
+   */
+  public DB: any;
+
   constructor(
     private http: HttpClient,
   ) { }

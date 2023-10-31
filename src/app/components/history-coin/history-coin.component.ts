@@ -15,7 +15,11 @@ export class HistoryCoinComponent implements OnInit {
   ngOnInit() {
     this.getHistory();
   }
-
+  /**
+   *Trae el historial de bancos
+   *
+   * @memberof HistoryCoinComponent
+   */
   getHistory() {
     this.loading = true
     this.coinService.historyEntities().subscribe({

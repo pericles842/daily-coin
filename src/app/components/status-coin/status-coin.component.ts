@@ -49,8 +49,8 @@ export class StatusCoinComponent implements OnInit {
   ngOnInit() {
 
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
-    if (sessionStorage.getItem('listBanks')) {
-      this.coinService.listBanksConfiguration = JSON.parse(sessionStorage.getItem('listBanks') as string);
+    if (localStorage.getItem('listBanks')) {
+      this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
     } else this.listBanks();
 
     this.getBank(this.typeStatus);
@@ -81,7 +81,7 @@ export class StatusCoinComponent implements OnInit {
    *
    * @memberof StatusCoinComponent
    */
-  listBanks():void {
+  listBanks(): void {
     const validBankingRoles = [
       BankingRole.banco_de_venezuela,
       BankingRole.bcv,
@@ -116,8 +116,9 @@ export class StatusCoinComponent implements OnInit {
             if (validBankingRoles.includes(banco.key)) banco.active = true;
 
             this.coinService.listBanksConfiguration.push(banco);
+
             let banks = JSON.stringify(this.coinService.listBanksConfiguration)
-             sessionStorage.setItem('listBanks', banks);
+            localStorage.setItem('listBanks', banks);
           })
         });
 
@@ -184,7 +185,7 @@ export class StatusCoinComponent implements OnInit {
     //INDEX DE LOS BACOS LOCALES
     let listBanksConfiguration: Bank = this.coinService.listBanksConfiguration[index];
     //ARREGLO DE BANCOS GUARDADOS
-    let banksStorage: Bank[] = JSON.parse(sessionStorage.getItem('listBanks') as string);
+    let banksStorage: Bank[] = JSON.parse(localStorage.getItem('listBanks') as string);
 
     //se desactivan
     this.coinService.listBanksConfiguration[index].active = false;
@@ -207,7 +208,7 @@ export class StatusCoinComponent implements OnInit {
       }, 2000);
     }
     //se guarda en el local
-    sessionStorage.setItem('listBanks', JSON.stringify(banksStorage));
+    localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
 
     const indexRandom: number = Math.floor(Math.random() * (filtersBanks.length - 1 - 0)) + 0;
@@ -222,7 +223,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   refreshCoin() {
-    sessionStorage.clear();
+    localStorage.clear();
     location.reload();
   }
 }

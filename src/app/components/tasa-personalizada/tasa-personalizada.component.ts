@@ -34,9 +34,9 @@ export class TasaPersonalizadaComponent {
     this.coinService.listBanksConfiguration.push(this.newMonto);
     this.messageService.add({ severity: 'success', summary: '', detail: 'Guardado con éxito' });
 
-    let banksStorage = JSON.parse(sessionStorage.getItem('listBanks') as string)
+    let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
     banksStorage.push(this.newMonto)
-    sessionStorage.setItem('listBanks', JSON.stringify(banksStorage));
+    localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
     setTimeout(() => {
       this.messageService.clear();

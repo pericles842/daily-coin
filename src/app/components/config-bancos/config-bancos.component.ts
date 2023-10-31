@@ -40,19 +40,19 @@ export class ConfigBancosComponent {
     return this.coinService.listBanksConfiguration
   }
   /**
-   *banco seleccinado
+   *banco seleccinado 
    *
    * @param {*} event
    * @memberof ConfigBancosComponent
    */
   banksSelected(event: any, index: number) {
     //banco del sesion storage
-    let banksStorage = JSON.parse(sessionStorage.getItem('listBanks') as string)
+    let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
 
     this.coinService.listBanksConfiguration[index].active = event.checked ? true : false;
     banksStorage[index].active = event.checked ? true : false
 
-    sessionStorage.setItem('listBanks', JSON.stringify(banksStorage));
+    localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
   }
 }
