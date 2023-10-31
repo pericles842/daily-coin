@@ -81,8 +81,9 @@ export class StatusCoinComponent implements OnInit {
    *
    * @memberof StatusCoinComponent
    */
-  listBanks(): void {
-    const validBankingRoles = [
+  listBanks(saveBankingRoles: BankingRole[] = []): void {
+
+    const defaultRoles = [
       BankingRole.banco_de_venezuela,
       BankingRole.bcv,
       BankingRole.enparalelovzla,
@@ -91,6 +92,11 @@ export class StatusCoinComponent implements OnInit {
       BankingRole.petro,
       BankingRole.zinli
     ];
+
+    const validBankingRoles = saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
+
+     
+
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
 
@@ -147,9 +153,9 @@ export class StatusCoinComponent implements OnInit {
    */
   get changeColorStatistics() {
     if (this.entidadBancaria.symbol === '▼') {
-      return 'text-red-400 '
+      return 'text-green-400'
     } else if (this.entidadBancaria.symbol === '▲') {
-      return 'text-green-400 '
+      return 'text-red-400'
     } else {
       return 'text-color'
     }
@@ -223,7 +229,18 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   refreshCoin() {
+    let beforeBanks: BankingRole[] = [];
+    const beforeEntidad: Bank = this.entidadBancaria;
     localStorage.clear();
-    location.reload();
+
+    this.coinService.listBanksConfiguration.forEach((entidad: any) => {
+      if (entidad.active == true) {
+        beforeBanks.push(entidad.key as BankingRole);
+      }
+    });
+    this.coinService.listBanksConfiguration = [];
+    this.listBanks(beforeBanks);
+
+ 
   }
 }

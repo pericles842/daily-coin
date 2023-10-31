@@ -10,8 +10,6 @@ import { CoinService } from 'src/app/services/coin.service';
 })
 export class ConfigBancosComponent {
 
-
-
   /**
    *-TODOS LOS BANCOS
    *
