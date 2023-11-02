@@ -254,7 +254,6 @@ export class StatusCoinComponent implements OnInit {
         beforeBanks.push(entidad.key as BankingRole);
       }
     });
-    console.log(beforeBanks);
     this.coinService.listBanksConfiguration = [];
     this.listBanks(beforeBanks);
 
