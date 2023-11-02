@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { CurrencyConversion } from 'src/app/models/CurrencyConversion';
 import { Bank } from 'src/app/models/bank';
 
@@ -29,6 +30,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   loading: boolean = false;
 
   constructor(
+    private messageService: MessageService
   ) { }
   ngOnInit() {
     if (this.banco !== undefined) {
@@ -82,5 +84,13 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
    */
   onInputChange(event: number) {
     this.moneyConversion(event, this.bsToDollar)
+  }
+  copyContent() {
+    navigator.clipboard.writeText(this.conversionMoney.total.toString() + this.conversionMoney.currency);
+    this.messageService.add({ severity: 'success', summary: '', detail: 'Copiado con éxito' });
+
+    setTimeout(() => {
+      this.messageService.clear();
+    }, 800);
   }
 }

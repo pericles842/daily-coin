@@ -40,6 +40,7 @@ export class StatusCoinComponent implements OnInit {
 
 
   loading: boolean = false;
+  personaliceBank: Bank[] = [];
   constructor(
     private coinService: CoinService,
     private _messageServiceSocial: MessageServiceSocial,
@@ -49,10 +50,10 @@ export class StatusCoinComponent implements OnInit {
   ngOnInit() {
 
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
-     if (localStorage.getItem('listBanks')) {
-       this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
-       this.refreshCoin();
-     } else this.listBanks();
+    if (localStorage.getItem('listBanks')) {
+      this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
+      this.refreshCoin();
+    } else this.listBanks();
     this.getBank(this.typeStatus);
 
   }
@@ -96,7 +97,7 @@ export class StatusCoinComponent implements OnInit {
 
     const validBankingRoles = saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
 
-
+    let beforeBanks: Bank[] = []
 
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
@@ -134,6 +135,17 @@ export class StatusCoinComponent implements OnInit {
         this.loading = false;
       }
     });
+
+
+    this.personaliceBank.forEach((beforeBank) => {
+
+      this.coinService.listBanksConfiguration.push(beforeBank)
+      beforeBanks.push(beforeBank);
+
+      localStorage.setItem('listBanks', JSON.stringify(beforeBanks));
+
+    })
+    this.personaliceBank = [];
   }
   /**
    *Cambia de banco al seleccionarlo en el botón
@@ -235,10 +247,14 @@ export class StatusCoinComponent implements OnInit {
     localStorage.clear();
 
     this.coinService.listBanksConfiguration.forEach((entidad: any) => {
+      if (entidad.key == BankingRole.personalice_bank) {
+        this.personaliceBank.push(entidad)
+      }
       if (entidad.active == true) {
         beforeBanks.push(entidad.key as BankingRole);
       }
     });
+    console.log(beforeBanks);
     this.coinService.listBanksConfiguration = [];
     this.listBanks(beforeBanks);
 

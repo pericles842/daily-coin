@@ -27,4 +27,5 @@ export enum BankingRole {
   syklo = 'syklo',
   yadio = 'yadio',
   zinli = 'zinli',
+  personalice_bank = 'personalice_bank'
 }

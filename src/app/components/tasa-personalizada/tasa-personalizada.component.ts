@@ -33,7 +33,8 @@ export class TasaPersonalizadaComponent {
     let dateToday = new Date()
     this.newMonto.active = true;
     this.newMonto.last_update = dateConvert(dateToday);
-     
+    this.newMonto.key = 'personalice_bank';
+
     this.coinService.listBanksConfiguration.push(this.newMonto);
     this.messageService.add({ severity: 'success', summary: '', detail: 'Guardado con éxito' });
 
@@ -44,7 +45,7 @@ export class TasaPersonalizadaComponent {
     setTimeout(() => {
       this.messageService.clear();
       this.route.navigateByUrl('/home')
-    }, 2000);
+    }, 1000);
 
   }
 }
