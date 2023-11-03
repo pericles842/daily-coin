@@ -48,13 +48,12 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.getBank(this.typeStatus);
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
     if (localStorage.getItem('listBanks')) {
       this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
       this.refreshCoin();
     } else this.listBanks();
-    this.getBank(this.typeStatus);
 
   }
   /**
@@ -83,7 +82,6 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   listBanks(saveBankingRoles: BankingRole[] = []): void {
-
     this.loading = true;
     const defaultRoles = [
       BankingRole.banco_de_venezuela,
@@ -129,10 +127,10 @@ export class StatusCoinComponent implements OnInit {
             localStorage.setItem('listBanks', banks);
           })
         });
-        this.loading = false;
+
       },
       error: (err) => {
-        this.loading = false;
+
       }
     });
 
