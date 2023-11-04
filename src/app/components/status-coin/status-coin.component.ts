@@ -82,7 +82,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   listBanks(saveBankingRoles: BankingRole[] = []): void {
-    this.loading = true;
+
     const defaultRoles = [
       BankingRole.banco_de_venezuela,
       BankingRole.bcv,
@@ -256,4 +256,5 @@ export class StatusCoinComponent implements OnInit {
     this.listBanks(beforeBanks);
 
   }
+
 }
