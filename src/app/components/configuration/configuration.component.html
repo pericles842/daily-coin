@@ -1,6 +1,11 @@
-<div class="flex justify-content-start my-2">
+<div class="flex justify-content-between  align-items-center  my-2">
+  <div>
+    <img class="w-9" src="../../../assets/dc-verde.png" alt="daily-coin">
+  </div>
   <p class="font-semibold text-2xl text-color">Configuración</p>
 </div>
+
+
 <div class="grid gap-5 mt-4">
   <div [routerLink]="'bancos-config'" class=" cursor-pointer col bg-primary border-round  
   shadow-4 gap-3 p-3 flex flex-column  align-items-start">
@@ -15,6 +20,11 @@
   <div [routerLink]="'tasa-personalizada'" class="cursor-pointer col bg-primary border-round  
   shadow-4 gap-3 p-3 flex flex-column  align-items-start">
     <span class="pi pi-pencil" style="font-size: 2rem"></span>
-    <h2>Tasa personalizada </h2>
+    <h2>Precio personalizado </h2>
+  </div>
+  <div [routerLink]="'info'" class="cursor-pointer col bg-primary-reverse border-round  
+  shadow-4 gap-3 p-3 flex flex-column  align-items-start">
+    <span class="pi pi-question-circle" style="font-size: 2rem"></span>
+    <h2>Información de la App</h2>
   </div>
 </div>

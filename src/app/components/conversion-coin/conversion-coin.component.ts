@@ -82,8 +82,9 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
    * @param {*} event
    * @memberof ConversionCoinComponent
    */
-  onInputChange(event: number) {
-    this.moneyConversion(event, this.bsToDollar)
+  onInputChange(event: number | string) {
+
+    this.moneyConversion(event as number, this.bsToDollar)
   }
   copyContent() {
     navigator.clipboard.writeText(this.conversionMoney.total.toString() + this.conversionMoney.currency);

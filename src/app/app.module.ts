@@ -25,6 +25,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa-personalizada.component';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
+import { InfoComponent } from './components/info/info.component';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { MessagesModule } from 'primeng/messages';
     ConfigBancosComponent,
     HistoryCoinComponent,
     TasaPersonalizadaComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { MessagesModule } from 'primeng/messages';
     AppRoutingModule,
     CheckboxModule,
     CalendarModule,
-    MessagesModule
+    MessagesModule,
+    InputMaskModule
     
   ],
   providers: [MessageService],

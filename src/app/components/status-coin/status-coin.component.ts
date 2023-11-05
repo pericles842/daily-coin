@@ -72,6 +72,7 @@ export class StatusCoinComponent implements OnInit {
       },
       error: (err) => {
         this.loading = false;
+        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
       }
     }
     );
@@ -130,7 +131,7 @@ export class StatusCoinComponent implements OnInit {
 
       },
       error: (err) => {
-
+        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
       }
     });
 
@@ -255,6 +256,18 @@ export class StatusCoinComponent implements OnInit {
     this.coinService.listBanksConfiguration = [];
     this.listBanks(beforeBanks);
 
+  }
+
+
+  /**
+   *
+   Carga en base al local storage
+   *
+   * @readonly
+   * @memberof StatusCoinComponent
+   */
+  get statusLoading(){
+    return localStorage.getItem('listBanks')
   }
 
 }

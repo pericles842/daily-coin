@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { CoinService } from 'src/app/services/coin.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class HistoryCoinComponent implements OnInit {
   history: any[] = []
   loading: boolean = false
   constructor(
-    private coinService: CoinService
+    private coinService: CoinService,
+    private messageService: MessageService
   ) { }
   ngOnInit() {
     this.getHistory();
@@ -30,6 +32,7 @@ export class HistoryCoinComponent implements OnInit {
       },
       error: (erro) => {
         this.loading = false
+        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
       }
     })
   }
