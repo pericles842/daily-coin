@@ -96,8 +96,6 @@ export class StatusCoinComponent implements OnInit {
 
     const validBankingRoles = saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
 
-    let beforeBanks: Bank[] = []
-
     this.coinService.listBankingEntities().subscribe({
       next: (res: any) => {
 
@@ -139,10 +137,7 @@ export class StatusCoinComponent implements OnInit {
     this.personaliceBank.forEach((beforeBank) => {
 
       this.coinService.listBanksConfiguration.push(beforeBank)
-      beforeBanks.push(beforeBank);
-
-      localStorage.setItem('listBanks', JSON.stringify(beforeBanks));
-
+            
     })
     this.personaliceBank = [];
   }
