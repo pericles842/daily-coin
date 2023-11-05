@@ -1,12 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
 import { MessageServiceSocial } from 'src/app/services/message';
-import { ConfigBancosComponent } from '../config-bancos/config-bancos.component';
-import { filter } from 'rxjs';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-status-coin',
