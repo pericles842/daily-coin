@@ -1,26 +1,31 @@
-<p-overlayPanel #op>
+<p-overlayPanel  #op>
   <div *ngFor="let banco of Bancos ;  let i = index">
-    <div (click)="changeBank(i,op)" *ngIf="banco.active" class="flex justify-content-between  p-2 align-items-center gap-4 bancosBold">
+    <div (click)="changeBank(i,op)" *ngIf="banco.active"
+      class="flex justify-content-between  p-2 align-items-center gap-4 bancosBold">
       <p class="cursor-pointer ">{{banco.title}}</p>
       <span (click)="deleteBank(i)" class="pi pi-times  cursor-pointer" style="font-size: 1rem"></span>
     </div>
   </div>
 </p-overlayPanel>
-<div class="bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">
+
+<!-- CARTA DE BANCOS -->
+<!-- (click)="op.toggle($event)" -->
+<div (click)="op.toggle($event)"  class="touch bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">
   <div class="flex justify-content-between">
     <div class="flex flex-column">
       <p>Ultima actualización</p>
       <p class="font-semibold">{{entidadBancaria.last_update}}</p>
     </div>
-    <span (click)="op.toggle($event)" class="pi pi-sort-alt circle p-2 cursor-pointer" style="font-size: 1.5rem"></span>
+    <span  class="pi pi-sort-alt circle p-2 cursor-pointer" style="font-size: 1.5rem"></span>
   </div>
   <h1> {{entidadBancaria.title}} </h1>
   <h3 class="text-bold"> Tasa: {{entidadBancaria.price}} Bs</h3>
 </div>
 
+<!-- botones -->
 <div class="flex justify-content-between align-items-center  mt-3 gap-3">
   <!-- Compartir -->
-  <button (click)="shareRateStatus()" pButton pRipple class=" pi pi-share-alt text-lg shadow-4 "></button>
+  <button (click)="shareRateStatus()" pButton pRipple class="touch  pi pi-send text-lg shadow-4 "></button>
 
   <div class="flex align-items-center gap-1">
     <p class="font-semibold flex align-items-center gap-3 text-4xl" [ngClass]="changeColorStatistics">
@@ -29,6 +34,6 @@
       {{entidadBancaria.symbol}}</p>
   </div>
   <!-- Restablecer -->
-  <button (click)="refreshCoin()" pButton pRipple class="pi pi-replay text-lg shadow-4"></button>
+  <button  (click)="refreshCoin()" pButton pRipple class="pi pi-replay text-lg shadow-4 touch"></button>
 </div>
 <app-loading [loading]="loading || !statusLoading"></app-loading>

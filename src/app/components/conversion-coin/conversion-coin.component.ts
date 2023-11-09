@@ -75,6 +75,12 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     this.bsToDollar = !this.bsToDollar
     this.conversionMoney.currency = this.bsToDollar ? '$' : 'Bs';
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
+
+    this.messageService.add({ severity: 'info', summary: `Haz cambiado de ${!this.bsToDollar ? 'Dólares' : 'Bolivares'} a ${this.bsToDollar ? 'Dólares' : 'Bolivares'}  ` , detail: '' });
+
+    setTimeout(() => {
+      this.messageService.clear();
+    }, 1900);
   }
   /**
    *captura el evento del input y detecta los cambios

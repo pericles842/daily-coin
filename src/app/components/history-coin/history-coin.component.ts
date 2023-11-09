@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CoinService } from 'src/app/services/coin.service';
 
@@ -12,7 +13,8 @@ export class HistoryCoinComponent implements OnInit {
   loading: boolean = false
   constructor(
     private coinService: CoinService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: Router
   ) { }
   ngOnInit() {
     this.getHistory();
@@ -32,7 +34,13 @@ export class HistoryCoinComponent implements OnInit {
       },
       error: (erro) => {
         this.loading = false
-        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
+        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: '' });
+
+        setTimeout(() => {
+          this.messageService.clear();
+          this.route.navigateByUrl('/history')
+
+        }, 1100);
       }
     })
   }
