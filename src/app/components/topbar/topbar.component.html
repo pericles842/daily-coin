@@ -1,20 +1,23 @@
 <div class="fixed bottom-0 w-full flex justify-content-center
    gap-5 bg-primary align-items-center">
   <!-- configuración -->
-  <div class="touch-menu">
-    <i style="font-size: 1.6rem;" routerLink="/config" class=" pi pi-cog "></i>
+  <!-- config -->
+  <div #config class="touch-menu " (click)="changeMenu(config)">
+    <i style="font-size: 1.6rem;" routerLink="/config" class="pi pi-cog"></i>
   </div>
-  <!-- <i (click)="pago_movil.emit()" class="pi pi-wallet" ></i> -->
+
   <!-- home -->
-  <div class="touch-menu">
-    <i style="font-size: 1.6rem;" routerLink="/home" class=" pi pi-home"></i>
+  <div #home class="touch-menu touch-menu-hover" (click)="changeMenu(home)">
+    <i style="font-size: 1.6rem;" routerLink="/home" class="pi pi-home"></i>
   </div>
+
   <!-- calculadora -->
-  <div class="touch-menu">
-    <i style="font-size: 1.6rem;" class=" pi pi-calculator"></i>
+  <div #calculadora class="touch-menu " (click)="changeMenu(calculadora)">
+    <i style="font-size: 1.6rem;" class="pi pi-calculator"></i>
   </div>
+
   <!-- historial de tasas -->
-  <div class="touch-menu">
-    <i style="font-size: 1.6rem;" routerLink="/history" class=" pi pi-history"></i>
+  <div #history class="touch-menu " (click)="changeMenu(history)">
+    <i style="font-size: 1.6rem;" routerLink="/history" class="pi pi-history"></i>
   </div>
 </div>

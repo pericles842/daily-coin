@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
@@ -7,22 +7,20 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TopbarComponent {
 
+touchMenus = document.getElementsByClassName("touch-menu");
 
-  get touchStyle() {
-    let touch_menu_default = {
-      padding: '10px 0',
-      margin: '5px 0',
-      transition: ' 0.5s',
+get routewindow(){
+  return window.location.href
+}
+
+  changeMenu(menu: HTMLDivElement) {
+     
+    for (let i = 0; i < this.touchMenus.length; i++) {
+      this.touchMenus[i].classList.remove("touch-menu-hover");
+      this.touchMenus[i].classList.add("touch-menu-default");
     }
 
-    let touch_menu = {
-      "border-radius": " 5px",
-      "background-color": " var(--primary-color-text)",
-      color: "var(--primary-color)",
-      padding: "10px 10%",
-      margin: "5px 0",
-      transition: " 0.5s",
-    }
-    return ''
+    menu.classList.remove("touch-menu-default");
+    menu.classList.add("touch-menu-hover");
   }
 }

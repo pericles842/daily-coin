@@ -1,1 +1,12 @@
+  .touch-menu {
+      transition: 0.5s;
+  }
  
+ .touch-menu-hover {
+     border-radius: 5px;
+     background-color: var(--primary-color-text);
+     color: var(--primary-color);
+     padding: 10px 10%;
+     margin: 5px 0;
+     transition: 0.5s;
+ }
