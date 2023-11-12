@@ -1,4 +1,5 @@
 export enum BankingRole {
+  airtm='airtm',
   amazon_gift_card = 'amazon_gift_card',
   bancamiga = 'bancamiga',
   banco_de_venezuela = 'banco_de_venezuela',
