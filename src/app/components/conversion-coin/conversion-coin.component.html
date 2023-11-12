@@ -6,8 +6,8 @@
   <span class="p-input-icon-right p-fluid">
     <i *ngIf="bsToDollar; else DollarToBs" style="font-family: Arial, Helvetica, sans-serif; font-style: normal;"
       class="font-medium text-xl ">Bs</i>
-    <input class="p-inputtext-lg" type="number" (ngModelChange)="onInputChange($event)"  
-      pInputText [(ngModel)]="conversionMoney.money_conversion" />
+    <input class="p-inputtext-lg" type="number" (ngModelChange)="onInputChange($event)" pInputText
+      [(ngModel)]="conversionMoney.money_conversion" />
   </span>
   <ng-template #DollarToBs>
     <i class="pi pi-dollar"></i>
@@ -15,12 +15,12 @@
 </div>
 <div *ngIf="loading ; else load " class="flex justify-content-center my-5 ">
   <p #bs (click)="copyContent()" class="text-6xl text-color font-medium hover:text-primary cursor-pointer">
-    {{conversionMoney.total}}
-    {{conversionMoney.currency}}
+    {{conversionMoney.total   | number:'1.2-2'}}
+    <span class="text-primary">{{conversionMoney.currency}}</span>
   </p>
   <!-- <span class="pi pi-copy"></span> -->
 </div>
 <ng-template #load>
-  <p-progressBar  mode="indeterminate" [color]="'var(--primary-color)'" [style]="{ height: '5px'}">
+  <p-progressBar mode="indeterminate" [color]="'var(--primary-color)'" [style]="{ height: '5px'}">
   </p-progressBar>
 </ng-template>

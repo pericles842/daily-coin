@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   bancoActual: Bank = new Bank()
 
   ngOnInit() {
-    this.entidadBancaria = BankingRole.enparalelovzla;
+    this.entidadBancaria = BankingRole.bcv;
 
   }
   /**
