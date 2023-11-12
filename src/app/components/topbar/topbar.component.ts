@@ -7,12 +7,25 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent implements OnInit {
+
+
   @ViewChild('config', { static: false }) config!: ElementRef<HTMLDivElement>;
   @ViewChild('home', { static: false }) home!: ElementRef<HTMLDivElement>;
   @ViewChild('history', { static: false }) history!: ElementRef<HTMLDivElement>;
 
+  /**
+   *Elementos div
+   *
+   * @type {HTMLCollectionOf<Element>}
+   * @memberof TopbarComponent
+   */
   touchMenus!: HTMLCollectionOf<Element>;
-
+  /**
+   *Obtiene la URL actual diariamente
+   *
+   * @readonly
+   * @memberof TopbarComponent
+   */
   get routeWindow() {
     const arrayUrl = window.location.href.split('/');
     const index = arrayUrl.length - 1;
@@ -27,8 +40,13 @@ export class TopbarComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         let element = this.home;
+
+
         switch (this.routeWindow) {
           case 'config':
+          case 'bancos-config':
+          case 'tasa-personalizada':
+          case 'info':
             element = this.config;
             break;
           case 'home':
@@ -38,15 +56,15 @@ export class TopbarComponent implements OnInit {
             element = this.history;
             break;
         }
-        
+
         this.changeMenu(element.nativeElement);
       }
     });
   }
-/**
- * cambia el hover del menu 
- * @param menu elemto
- */
+  /**
+   * cambia el hover del menu 
+   * @param menu elemto
+   */
   changeMenu(menu: HTMLDivElement) {
 
     //elimina   hover
