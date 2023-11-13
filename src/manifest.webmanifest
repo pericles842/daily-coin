@@ -1,0 +1,17 @@
+{
+  "name": "Daily Coin",
+  "short_name": "Daily Coin",
+  "theme_color": "#5EEAD4",
+  "background_color": "#FFFFF",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/daily_coin.ico",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    } 
+  ]
+}
