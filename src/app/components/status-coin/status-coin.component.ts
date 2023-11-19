@@ -46,6 +46,7 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.getBank(this.typeStatus);
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
     if (localStorage.getItem('listBanks')) {
@@ -82,24 +83,23 @@ export class StatusCoinComponent implements OnInit {
    */
   listBanks(saveBankingRoles: BankingRole[] = []): void {
 
+    //Roles por default
     const defaultRoles = [
       BankingRole.banco_de_venezuela,
       BankingRole.bcv,
       BankingRole.enparalelovzla,
       BankingRole.monitor_dolar_venezuela,
-      BankingRole.paypal,
-      BankingRole.petro,
       BankingRole.zinli
     ];
-
+    //Valida los bancos en base  al la configuración o por el default
     const validBankingRoles = saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
 
-    this.coinService.listBankingEntities().subscribe({
+
+
+    this.coinService.listBankingDailyCoin().subscribe({
       next: (res: any) => {
-
-        res.monitors;
-
-        [res.monitors].forEach((entidad: any) => {
+        
+        [res.newBankingList].forEach((entidad: any) => {
           Object.keys(entidad).forEach((key: string) => {
 
             const banco = new Bank();
@@ -116,6 +116,7 @@ export class StatusCoinComponent implements OnInit {
             banco.symbol = entidadKey.symbol;
             banco.change = entidadKey.change;
 
+            //según la configuración se activa o desactiva
             if (validBankingRoles.includes(banco.key)) banco.active = true;
 
             this.coinService.listBanksConfiguration.push(banco);
@@ -135,7 +136,7 @@ export class StatusCoinComponent implements OnInit {
     this.personaliceBank.forEach((beforeBank) => {
 
       this.coinService.listBanksConfiguration.push(beforeBank)
-            
+
     })
     this.personaliceBank = [];
   }
@@ -259,7 +260,7 @@ export class StatusCoinComponent implements OnInit {
    * @readonly
    * @memberof StatusCoinComponent
    */
-  get statusLoading(){
+  get statusLoading() {
     return localStorage.getItem('listBanks')
   }
 

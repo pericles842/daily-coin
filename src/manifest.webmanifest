@@ -1,8 +1,8 @@
 {
   "name": "Daily Coin",
   "short_name": "Daily Coin",
-  "theme_color": "#5EEAD4",
-  "background_color": "#FFFFF",
+  "theme_color": "#fff",
+  "background_color": "#fff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
