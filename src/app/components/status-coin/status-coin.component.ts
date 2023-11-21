@@ -46,8 +46,8 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.typeStatus == 'bcv' ? this.getBankBcv() : this.getBank(this.typeStatus);
 
-    this.getBank(this.typeStatus);
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
     if (localStorage.getItem('listBanks')) {
       this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
@@ -64,7 +64,34 @@ export class StatusCoinComponent implements OnInit {
     this.loading = true;
     this.coinService.getBanking(bankingRole).subscribe({
       next: (res: any) => {
-        this.entidadBancaria = res;
+
+        const response = res;
+
+        this.entidadBancaria = response;
+        this.loading = false;
+
+        this.bankingEntity.emit(this.entidadBancaria)
+      },
+      error: (err) => {
+        this.loading = false;
+        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
+      }
+    }
+    );
+  }
+  /**
+   *obtiene el precio del banco censal
+   *
+   * @return {*}  {*}
+   * @memberof StatusCoinComponent
+   */
+  getBankBcv(): any {
+    this.loading = true;
+    this.coinService.getBankDailyCoinBcv().subscribe({
+      next: (res: any) => {
+
+        this.entidadBancaria = res.bank
+
         this.loading = false;
 
         this.bankingEntity.emit(this.entidadBancaria)
@@ -98,7 +125,7 @@ export class StatusCoinComponent implements OnInit {
 
     this.coinService.listBankingDailyCoin().subscribe({
       next: (res: any) => {
-        
+
         [res.newBankingList].forEach((entidad: any) => {
           Object.keys(entidad).forEach((key: string) => {
 

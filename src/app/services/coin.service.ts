@@ -13,8 +13,8 @@ export class CoinService {
   /**
    *Lista de bancos configurables
    *
-   * @type {Bank[]}
-   * @memberof CoinService
+   * @type {Ban}
+   * @memberof Coi as anyService
    */
   listBanksConfiguration: Bank[] = [];
   /**
@@ -82,11 +82,10 @@ export class CoinService {
           newBankingList = banking.monitors;
 
           let { date, time } = bankingBCV.datetime;
-          //fecha
-          // let fechaBcv: string = `${date}, ${time}`;
+
           //precio actualizado
           newBankingList.bcv.price = bankingBCV.monitors.usd.price
-          newBankingList.bcv.last_update = this.transformDate(date,time)
+          newBankingList.bcv.last_update = this.transformDate(date, time)
 
           observer.next({
             newBankingList,
@@ -94,8 +93,7 @@ export class CoinService {
           observer.complete();
         },
         error: (err) => {
-          console.log('error');
-          observer.error('error');
+          observer.error(err);
         },
       });
     });
@@ -106,7 +104,7 @@ export class CoinService {
    * @param {string} dateToString
    * @memberof CoinService
    */
-  transformDate(date: string , concat:string) {
+  transformDate(date: string, concat: string) {
     //convertimos array
     let dateToArray = date.split(" ")
     //contenemos
@@ -118,5 +116,36 @@ export class CoinService {
     const mes = fecha.getMonth() + 1; // Los meses en JavaScript comienzan desde 0, por lo que necesitas sumar 1
     const anio = fecha.getFullYear();
     return `${dia < 10 ? "0" + dia : dia}/${mes < 10 ? "0" + mes : mes}/${anio}, ${concat}`;
+  }
+
+  getBankDailyCoinBcv() {
+
+    return new Observable((observer) => {
+
+      let newBankingList: any = {}
+
+      const listBankingObservable = this.listBankingEntities();
+      const bcvObservable = this.getBankBCV();
+
+      forkJoin([listBankingObservable, bcvObservable]).subscribe({
+        next: ([banking, bankingBCV]: [any, any]) => {
+          newBankingList = banking.monitors;
+
+          let { date, time } = bankingBCV.datetime;
+
+          //precio actualizado
+          newBankingList.bcv.price = bankingBCV.monitors.usd.price
+          newBankingList.bcv.last_update = this.transformDate(date, time)
+
+          observer.next({
+            bank: newBankingList.bcv
+          });
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
+        },
+      });
+    });
   }
 }
