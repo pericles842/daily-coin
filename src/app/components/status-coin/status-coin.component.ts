@@ -103,6 +103,19 @@ export class StatusCoinComponent implements OnInit {
     }
     );
   }
+
+  defaultRolesTheBank(saveBankingRoles: BankingRole[]) {
+    //Roles por default
+    const defaultRoles = [
+      BankingRole.bcv,
+      BankingRole.enparalelovzla,
+      BankingRole.zinli,
+      BankingRole.el_dorado
+    ];
+    //Valida los bancos en base  al la configuración o por el default
+    return saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
+
+  }
   /**
    *Lista los bancos disponibles
    *
@@ -110,16 +123,8 @@ export class StatusCoinComponent implements OnInit {
    */
   listBanks(saveBankingRoles: BankingRole[] = []): void {
 
-    //Roles por default
-    const defaultRoles = [
-      BankingRole.banco_de_venezuela,
-      BankingRole.bcv,
-      BankingRole.enparalelovzla,
-      BankingRole.monitor_dolar_venezuela,
-      BankingRole.zinli
-    ];
     //Valida los bancos en base  al la configuración o por el default
-    const validBankingRoles = saveBankingRoles.length > 0 ? saveBankingRoles : defaultRoles;
+    const validBankingRoles = this.defaultRolesTheBank(saveBankingRoles)
 
 
 

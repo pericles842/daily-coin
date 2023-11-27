@@ -5,19 +5,19 @@
   <p class="font-semibold text-3xl text-color">Bancos</p>
 </div>
 
-<div class="flex justify-content-around flex-wrap p-1 mb-8">
+<div class="flex  flex-column p-1 mb-8">
   <!-- Carta -->
-  <div class=" touch flex align-items-center justify-content-center shadow-4 gap-2 p-2 m-1 border-round"
-    [ngClass]="banco.active ? 'bg-green-400':'bg-white'" *ngFor="let banco of BancosEnUso; let i = index">
+  <div class=" touch flex align-items-center justify-content-start shadow-4 gap-2 p-2 m-1 border-round"
+    [ngClass]="banco.active ? 'bg-green-400':'bg-white'" *ngFor="let banco of BancosEnUso ; let i = index">
     <p-checkbox [ngClass]="banco.active ? 'bg-green-400':'bg-primary'" (onChange)="banksSelected($event,i)"
       [(ngModel)]="banco.active" [value]="banco" [binary]="true" [inputId]="banco.key"
       style="display: none;"></p-checkbox>
     <img class="w-3 h-3 bg-white p-1 border-round " [src]="'assets/bank-icon/'+banco.key+'.webp'" [alt]="banco.key">
-    <label [ngClass]="banco.active ? 'text-white':'text-color-secondary'" class="text-xl"
+    <label [ngClass]="banco.active ? 'text-white':'text-color-secondary'" class="text-3xl"
       [for]="banco.key">{{banco.title}}</label>
   </div>
 </div>
-<app-loading [loading]="loading"></app-loading>
+<app-loading [loading]="loading"></app-loading> 
 
 
 <!-- <p-checkbox [ngClass]="banco.active ? 'bg-green-400 ':'bg-primary'" (onChange)="banksSelected($event,i)"
