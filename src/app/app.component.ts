@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { dateConvert } from './functions/date';
-import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { SwPush, SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { MessageService } from 'primeng/api';
 import { filter, interval } from 'rxjs';
+import { environment } from 'environment';
+import { Token } from '@angular/compiler';
 
 
 @Component({
@@ -12,6 +14,9 @@ import { filter, interval } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   sessionDate: Date = new Date();
+
+  readonly PUBLIC_KEY: string = environment.notification.publicKey
+  readonly PRIVATE_KEY: string = environment.notification.privateKey
   /**
    *booleano que define si existen actualizaciones
    *
@@ -22,6 +27,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly swUpdate: SwUpdate,
+    private swPush: SwPush,
     private messageService: MessageService,
   ) {
     setInterval(() => {
@@ -32,8 +38,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     localStorage.setItem('timeSession', dateConvert(this.sessionDate))
+
+    //this.confirmationNotificación()
 
   }
   /**
@@ -44,7 +51,7 @@ export class AppComponent implements OnInit {
   checkForUpdates(): void {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.checkForUpdate().then((event) => {
-        
+
         if (!this.updates) {
           this.updates = event
         } else return
@@ -59,4 +66,19 @@ export class AppComponent implements OnInit {
   activateUpdate() {
     window.location.href = window.location.href;
   }
+
+  confirmationNotificación(): void {
+    const options = {
+      serverPublicKey: this.PUBLIC_KEY
+    }
+    this.swPush.requestSubscription(options).then(sub => {
+      const token = JSON.parse(JSON.stringify(sub))
+
+      console.log('MNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO', token);
+    }
+    ).catch((error) => {
+      console.error(error);
+    })
+  }
+  
 }

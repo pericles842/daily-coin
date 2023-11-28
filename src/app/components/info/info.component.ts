@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'environment';
 
 @Component({
   selector: 'app-info',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent {
-
+  version: string = environment.version
 }
