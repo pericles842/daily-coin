@@ -5,6 +5,8 @@ import { forkJoin } from 'rxjs';
 import { environment } from 'environment';
 import { BankingRole } from '../enum/entiesBanking';
 import { Bank } from '../models/bank';
+import { monthsInQuarter } from 'date-fns';
+import { Months } from '../enum/Months';
 
 @Injectable({
   providedIn: 'root'
@@ -105,19 +107,23 @@ export class CoinService {
    * @memberof CoinService
    */
   transformDate(date: string, concat: string) {
+
     //convertimos array
     let dateToArray = date.split(" ")
+
+
     //contenemos
-    let dateToString = `${dateToArray[3]} ${dateToArray[1]} ${dateToArray[5]} `;
+    let dateToString = `${dateToArray[1]}/${Months[dateToArray[3] as any]}/${dateToArray[5]} `;
 
-    const fecha = new Date(dateToString);
+    return dateToString + ' ' + concat
 
-    const dia = fecha.getDate();
-    const mes = fecha.getMonth() + 1; // Los meses en JavaScript comienzan desde 0, por lo que necesitas sumar 1
-    const anio = fecha.getFullYear();
-    return `${dia < 10 ? "0" + dia : dia}/${mes < 10 ? "0" + mes : mes}/${anio}, ${concat}`;
   }
-
+  /**
+   *obtiene la tasa del banco central
+   *
+   * @return {*} BCV
+   * @memberof CoinService
+   */
   getBankDailyCoinBcv() {
 
     return new Observable((observer) => {

@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build ",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test" ,
+    "test": "ng test",
     "start-pwa": "ng build && npx http-server -p 8080 -c-1 dist/daily-coin"
   },
   "private": true,
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@angular/service-worker": "^15.2.0",
+    "date-fns": "^2.30.0",
     "indexeddb": "^0.0.0",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",

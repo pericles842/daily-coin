@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
+import { StatusCoinComponent } from '../status-coin/status-coin.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { CoinService } from 'src/app/services/coin.service';
   templateUrl: './config-bancos.component.html',
   styleUrls: ['./config-bancos.component.scss']
 })
-export class ConfigBancosComponent {
+export class ConfigBancosComponent implements OnInit {
 
   /**
    *-TODOS LOS BANCOS
@@ -26,8 +28,13 @@ export class ConfigBancosComponent {
   loading: boolean = false;
 
   constructor(
-    private coinService: CoinService
+    private coinService: CoinService,
+    private router: Router
   ) { }
+  ngOnInit() {
+    //si el home no a cargado carga el componente home
+    if (this.coinService.listBanksConfiguration.length === 0) this.router.navigate(['/home']);
+  }
   /**
    *Retorna la configuracion de los bancos en uso
    *
@@ -53,4 +60,5 @@ export class ConfigBancosComponent {
     localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
   }
+
 }
