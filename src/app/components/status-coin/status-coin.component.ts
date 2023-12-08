@@ -269,7 +269,7 @@ export class StatusCoinComponent implements OnInit {
    */
   refreshCoin() {
     let beforeBanks: BankingRole[] = [];
-    localStorage.clear();
+    localStorage.removeItem('listBanks');
 
     this.coinService.listBanksConfiguration.forEach((entidad: any) => {
       if (entidad.key == BankingRole.personalice_bank) {

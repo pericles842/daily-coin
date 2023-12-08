@@ -5,18 +5,97 @@
   <p class="font-semibold text-3xl text-color">Información</p>
 </div>
 
-<div class="mt-5">
+<div class="my-5">
   <div class="flex flex-column gap-2">
-    <p class="text-lg text-primary">Version : {{version}} </p>
-    <p class="text-lg text-primary">Desarrollador:<a href="https://www.instagram.com/sarmientolois/?next=%2F"
-        target="_blank" rel="noopener noreferrer">
-        Louis Sarmiento
-      </a>
-    </p>
-    <p class="text-lg text-primary">Organización:
-      <a href="https://www.instagram.com/_coffee_code" target="_blank" rel="noopener noreferrer">
+    <p class="text-lg text-primary">Version : {{version }} </p>
+    <p class="text-lg text-primary">Desarrolladora: <a href="https://www.instagram.com/_coffee_code" target="_blank"
+        rel="noopener noreferrer">
         Coffee Code
       </a>
     </p>
   </div>
 </div>
+<p-accordion class="w-full -5">
+  <p-accordionTab contentStyleClass="mb-7" headerStyleClass="bg-primary">
+    <ng-template pTemplate="header">
+      <div class="flex justify-content-between gap-5 align-items-center">
+        <span class="vertical-align-middle text-xl">Términos condiciones</span>
+        <i style="font-size: 1.5rem" class="pi pi-info-circle "></i>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="m-0 text-justify	 text-lg">
+        <h4 class="text-primary font-semibold	 pb-4">Términos y Condiciones de Uso de la Aplicación:</h4>
+
+        <div class="pb-4">
+          Bienvenido/a a nuestra aplicación para ver el precio de los bancos. Antes de utilizarla, es importante que
+          leas
+          detenidamente estos Términos y Condiciones, ya que establecen los términos legales que rigen el uso de la
+          Aplicación. Al utilizar Daily Coin, aceptas estar sujeto/a a estos Términos y Condiciones. Si no estás de
+          acuerdo con alguno de los términos aquí presentados, te pedimos que no utilices la Aplicación.
+        </div>
+
+        <div class="pb-4">
+          <span class="text-primary font-semibold">Uso de la Aplicación: 1.1.</span> Daily Coin tiene como objetivo
+          proporcionar un estimado del precio de los bancos.
+          Sin embargo, debes tener en cuenta que estos precios son meramente estimativos y pueden no ser exactos ni
+          reflejar
+          la tasa original en tiempo real. <span class="text-primary font-semibold">1.2</span>. No nos hacemos
+          responsables por el mal uso que se le pueda dar a la
+          Aplicación, ni por la precisión de los datos proporcionados. Es responsabilidad del usuario verificar la
+          información con fuentes adicionales antes de tomar cualquier decisión basada en los estimados proporcionados
+          por
+          la Aplicación.
+        </div>
+
+        <div class="pb-4">
+          <span class="text-primary font-semibold">Propiedad Intelectual: 2.1.</span> Todos los derechos de propiedad
+          intelectual sobre Daily Coin su contenido,
+          incluyendo pero no limitado a textos, gráficos, logotipos, imágenes, videos, sonidos, iconos, diseño y
+          software,
+          son propiedad exclusiva de los respectivos propietarios y están protegidos por las leyes de propiedad
+          intelectual aplicables. <span class="text-primary font-semibold">2.2</span>. Queda prohibida cualquier
+          reproducción, distribución, modificación, adaptación,
+          traducción, comunicación al público, puesta a disposición del público o cualquier otra forma de explotación
+          sin
+          la autorización previa y por escrito de los respectivos propietarios.
+        </div>
+
+        <div class="pb-4">
+          <span class="text-primary font-semibold"> Limitación de Responsabilidad: 3.1.</span> En ningún caso seremos
+          responsables por cualquier daño directo, indirecto,
+          especial, incidental, consecuencial o punitivo que surja del uso o la imposibilidad de uso de la Aplicación,
+          incluso si se ha advertido de la posibilidad de dichos daños. <span class="text-primary font-semibold">
+            3.2.</span> No garantizamos la disponibilidad continua y
+          sin interrupciones de la Aplicación ni la ausencia de errores en su funcionamiento. Nos reservamos el derecho
+          de suspender, interrumpir o modificar la Aplicación en cualquier momento sin previo aviso.
+        </div>
+
+        <div class="pb-4">
+          <span class="text-primary font-semibold"> Modificaciones a los Términos y Condiciones: 4.1.</span> Nos
+          reservamos el derecho de modificar, actualizar o
+          reemplazar estos Términos y Condiciones en cualquier momento y a nuestra sola discreción. <span
+            class="text-primary font-semibold">4.2.</span> Cualquier
+          modificación será efectiva tan pronto como se publique en la Aplicación. Te recomendamos revisar
+          periódicamente los Términos y Condiciones para estar al tanto de cualquier cambio.
+        </div>
+
+        <div class="pb-4">
+          Si tienes alguna pregunta o inquietud sobre estos Términos y Condiciones, no dudes en contactarnos a
+          <span class="text-primary font-semibold"> store.coffecode@gmail.com </span> . Agradecemos tu comprensión y
+          esperamos que disfrutes utilizando nuestra
+          Aplicación.
+        </div>
+        <div class="pb-4">
+          <span class="text-primary font-semibold "> Fecha de última actualización: 7 de diciembre de 2023 </span>
+        </div>
+      </div>
+
+      <div class="flex pb-4 align-items-center gap-2">
+        <p-checkbox (onChange)="changeContrato()" name="group1" [binary]="true" [(ngModel)]="contrato" inputId="la"></p-checkbox>
+        <label class="font-medium" for="la">Aceptar términos y condiciones</label>
+      </div>
+
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>

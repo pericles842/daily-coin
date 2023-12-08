@@ -28,6 +28,7 @@ import { MessagesModule } from 'primeng/messages';
 import { InfoComponent } from './components/info/info.component';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -60,13 +61,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     CalendarModule,
     MessagesModule,
     InputMaskModule,
+    AccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     })
-    
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

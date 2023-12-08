@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { filter, interval } from 'rxjs';
 import { environment } from 'environment';
 import { Token } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,13 @@ import { Token } from '@angular/compiler';
 })
 export class AppComponent implements OnInit {
   sessionDate: Date = new Date();
-
+  /**
+   *Términos y condiciones
+   *
+   * @type {Boolean}
+   * @memberof AppComponent
+   */
+  contrato: Boolean = false;
   readonly PUBLIC_KEY: string = environment.notification.publicKey
   readonly PRIVATE_KEY: string = environment.notification.privateKey
   /**
@@ -29,6 +36,7 @@ export class AppComponent implements OnInit {
     private readonly swUpdate: SwUpdate,
     private swPush: SwPush,
     private messageService: MessageService,
+    private router: Router
   ) {
     setInterval(() => {
       this.checkForUpdates()
@@ -39,7 +47,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('timeSession', dateConvert(this.sessionDate))
-
+    if (localStorage.getItem('contract') === null || Number(localStorage.getItem('contract')) === 0) this.contrato = true
     //this.confirmationNotificación()
 
   }
@@ -80,5 +88,16 @@ export class AppComponent implements OnInit {
       console.error(error);
     })
   }
-  
+  /**
+   *Guarda los terminos y condiciones
+   *
+   * @memberof AppComponent
+   */
+  guardarTerminos() {
+    localStorage.setItem('contract', '1')
+    this.contrato = false;
+  }
+  moveContract(){
+    this.router.navigate(['config/info'])
+  }
 }
