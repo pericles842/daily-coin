@@ -7,16 +7,16 @@
 
 <div class="my-5">
   <div class="flex flex-column gap-2">
-    <p class="text-lg text-primary">Version : {{version }} </p>
-    <p class="text-lg text-primary">Desarrolladora: <a href="https://www.instagram.com/_coffee_code" target="_blank"
+    <p class="text-lg text-primary">Version : <p-tag [value]="version"></p-tag> </p>
+    <p class="text-lg text-primary">Desarrolladora:  <a href="https://www.instagram.com/_coffee_code" target="_blank"
         rel="noopener noreferrer">
         Coffee Code
       </a>
     </p>
   </div>
 </div>
-<p-accordion class="w-full -5">
-  <p-accordionTab contentStyleClass="mb-7" headerStyleClass="bg-primary">
+<p-accordion class="w-full  ">
+  <p-accordionTab contentStyleClass="mb-7" headerStyleClass="bg-primary p-3">
     <ng-template pTemplate="header">
       <div class="flex justify-content-between gap-5 align-items-center">
         <span class="vertical-align-middle text-xl">Términos condiciones</span>
@@ -92,7 +92,8 @@
       </div>
 
       <div class="flex pb-4 align-items-center gap-2">
-        <p-checkbox (onChange)="changeContrato()" name="group1" [binary]="true" [(ngModel)]="contrato" inputId="la"></p-checkbox>
+        <p-checkbox (onChange)="changeContrato()" name="group1" [binary]="true" [(ngModel)]="contrato"
+          inputId="la"></p-checkbox>
         <label class="font-medium" for="la">Aceptar términos y condiciones</label>
       </div>
 

@@ -39,13 +39,15 @@ export class TopbarComponent implements OnInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        //opociion predeterminada
         let element = this.home;
 
-
+        // evita que el tobar se salga de su foco en determinada opción del menu
         switch (this.routeWindow) {
           case 'config':
           case 'bancos-config':
           case 'tasa-personalizada':
+          case 'theme':
           case 'info':
             element = this.config;
             break;

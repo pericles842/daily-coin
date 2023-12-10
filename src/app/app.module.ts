@@ -29,6 +29,8 @@ import { InfoComponent } from './components/info/info.component';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AccordionModule } from 'primeng/accordion';
+import { TagModule } from 'primeng/tag';
+import { ConfigThemeComponent } from './components/config-theme/config-theme.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { AccordionModule } from 'primeng/accordion';
     ConfigBancosComponent,
     HistoryCoinComponent,
     TasaPersonalizadaComponent,
-    InfoComponent
+    InfoComponent,
+    ConfigThemeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { AccordionModule } from 'primeng/accordion';
     CalendarModule,
     MessagesModule,
     InputMaskModule,
+    TagModule,
     AccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
