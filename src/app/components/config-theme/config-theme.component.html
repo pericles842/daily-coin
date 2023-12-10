@@ -4,17 +4,13 @@
   </div>
   <p class="font-semibold text-4xl text-color">Temas</p>
 </div>
+<!-- text-color-secondary -->
 
-<div class="grid gap-5">
-  <div class="col bg-white  border-round shadow-4">
-    <div class="  border-round  bg-primary p-2  m-1">.</div>
+<div class="flex flex-column gap-3  border-round mt-5" *ngFor="let tema  of temas ; let i = index ">
+
+  <div (click)="selectTheme(i)" [ngClass]="tema.textColor" class="touch flex align-items-center shadow-4 gap-5">
+    <div [ngClass]="tema.bgColor" class=" m-2 border-round p-1">.</div>
+    <p class="text-2xl  ">{{tema.title}}</p>
   </div>
 
-  <div class="col bg-white  border-round shadow-4">
-    <div class="  border-round  bg-primary p-2  m-1">.</div>
-  </div>
-
-  <div class="col bg-white  border-round shadow-4">
-    <div class="  border-round  bg-primary p-2  m-1">.</div>
-  </div>
 </div>

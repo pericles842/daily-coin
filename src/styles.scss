@@ -5,6 +5,14 @@
 
 }
 
+.background-dailyCoin {
+  background-image: url('assets/d.png');
+  background-color: rgba(255, 255, 255, 0.17);
+  background-size: cover;  
+  background-position: 80% 70%; /* Movido hacia abajo */
+  background-repeat: repeat;
+}
+
 input[type="text"],
 [type="number"] {
   box-shadow: none !important;
