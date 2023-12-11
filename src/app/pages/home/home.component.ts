@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfigThemeComponent } from 'src/app/components/config-theme/config-theme.component';
+import { Component, OnInit } from '@angular/core';
 import { BankingRole } from 'src/app/enum/entiesBanking';
 import { Bank } from 'src/app/models/bank';
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit  {
 
   entidadBancaria!: BankingRole
 
@@ -17,10 +16,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.entidadBancaria = BankingRole.bcv;
-       
 
   }
-   
+ 
+
   /**
    *Captura el banco actualS
    *

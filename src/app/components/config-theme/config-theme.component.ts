@@ -15,8 +15,8 @@ export class ConfigThemeComponent implements OnInit {
   temas: any[] = [
     {
       title: 'Tema claro',
-      bgColor: 'bg-primary ',
-      textColor: 'text-primary',
+      bgColor: 'bg-teal-400 ',
+      textColor: 'text-teal-400',
       path: 'light',
       active: false
     },
