@@ -2,6 +2,8 @@
 <div class="top-0 my-2 w-9 z-5 center-messages absolute">
   <p-messages></p-messages>
 </div>
+<app-header [title]="'configuración'"></app-header>
+
 <div class="p-3">
   <!-- ACTUALIZACIONES -->
   <div *ngIf="updates" class="  p-2 my-4 top-0 w-9 center-messages justify-content-between flex absolute  align-items-center z-5 
@@ -9,7 +11,7 @@
     <p class="text-base  font-semibold	 m-0 ">¡Nueva Actualización disponible!</p>
     <button pButton pRipple label="Actualizar" class="flex-none bg-primary p-2" (click)="activateUpdate()"></button>
   </div>
-<!-- TERMINOS Y CONDICIOES -->
+  <!-- TERMINOS Y CONDICIOES -->
   <div *ngIf="contrato" class=" p-2 my-4 top-0 w-9 center-messages absolute z-4 
       border-round bg-primary-reverse shadow-3 ">
     <div class=" flex flex-column  ">
@@ -23,7 +25,7 @@
       </div>
     </div>
   </div>
-<!-- APP -->
+  <!-- APP -->
   <router-outlet></router-outlet>
 </div>
 <app-topbar></app-topbar>

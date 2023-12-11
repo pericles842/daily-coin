@@ -31,6 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AccordionModule } from 'primeng/accordion';
 import { TagModule } from 'primeng/tag';
 import { ConfigThemeComponent } from './components/config-theme/config-theme.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ConfigThemeComponent } from './components/config-theme/config-theme.com
     HistoryCoinComponent,
     TasaPersonalizadaComponent,
     InfoComponent,
-    ConfigThemeComponent
+    ConfigThemeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
