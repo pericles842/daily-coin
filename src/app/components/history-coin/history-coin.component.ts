@@ -38,7 +38,8 @@ export class HistoryCoinComponent implements OnInit {
 
         setTimeout(() => {
           this.messageService.clear();
-          this.route.navigateByUrl('/history')
+         // this.route.navigateByUrl('/history')
+         window.location.href 
 
         }, 1100);
       }

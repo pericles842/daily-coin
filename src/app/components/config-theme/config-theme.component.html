@@ -1,11 +1,3 @@
-<div class="flex justify-content-between  align-items-center  my-2">
-  <div>
-    <img class="w-9" src="assets/dc-verde.png" alt="daily-coin">
-  </div>
-  <p class="font-semibold text-4xl text-color">Temas</p>
-</div>
-<!-- text-color-secondary -->
-
 <div class="flex flex-column gap-3  border-round mt-5" *ngFor="let tema  of temas ; let i = index ">
 
   <div (click)="selectTheme(i)" [ngClass]="tema.textColor" class="touch flex align-items-center shadow-4 gap-5">

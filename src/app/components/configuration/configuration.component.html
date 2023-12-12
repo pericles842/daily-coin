@@ -1,29 +1,37 @@
-<!-- <div class="flex justify-content-between  align-items-center  my-2">
-  <div>
-    <img class="w-9" src="assets/dc-verde.png" alt="daily-coin">
-  </div>
-  <p class="font-semibold text-2xl text-color">Configuración</p>
-</div> -->
+<div class="grid gap-4 my-5">
 
-<div class="grid gap-5 mt-4">
-  <div [routerLink]="'bancos-config'" class=" touch cursor-pointer col bg-primary border-round  
-  shadow-4 gap-3 p-3 flex flex-column  align-items-start">
-    <span class="pi pi-building " style="font-size: 2rem"></span>
-    <h2>Bancos favoritos</h2>
+  <div [routerLink]="'bancos-config'" class=" touch cursor-pointer py-4 col bg-primary-reverse border-round  
+    shadow-6 ">
+    <div class="flex flex-column  gap-3  align-items-center">
+      <span class="pi pi-building font-light" style="font-size: 3.5rem"></span>
+      <p class="text-2xl  text-center">Bancos</p>
+    </div>
   </div>
-  <div [routerLink]="'theme'" class=" touch cursor-pointer col bg-primary-reverse border-round gap-3 p-3  
-    shadow-4 flex flex-column  align-items-start">
-    <span class="pi pi-palette" style="font-size: 2rem"></span>
-    <h2>Tema y preferencias</h2>
+
+  <div [routerLink]="'info'" class=" touch cursor-pointer py-4 col bg-primary-reverse border-round  
+  shadow-6 ">
+    <div class="flex flex-column gap-3 align-items-center">
+      <span class="pi pi-info-circle font-light" style="font-size: 3.5rem"></span>
+      <p class="text-2xl  text-center">Información</p>
+    </div>
   </div>
-  <div [routerLink]="'tasa-personalizada'" class="touch cursor-pointer col bg-primary border-round  
-  shadow-4 gap-3 p-3 flex flex-column  align-items-start">
-    <span class="pi pi-pencil" style="font-size: 2rem"></span>
-    <h2>Precio personalizado </h2>
+
+  <div [routerLink]="'theme'" class=" touch cursor-pointer py-4 col bg-primary-reverse border-round  
+  shadow-6 ">
+    <div class="flex flex-column gap-3 align-items-center">
+      <span class="pi pi-palette font-light" style="font-size: 3.5rem"></span>
+      <p class="text-2xl  text-center">Temas</p>
+    </div>
   </div>
-  <div [routerLink]="'info'" class="touch cursor-pointer col bg-primary-reverse border-round  
-  shadow-4 gap-3 p-3 flex flex-column  align-items-start">
-    <span class="pi pi-question-circle" style="font-size: 2rem"></span>
-    <h2>Información de la App</h2>
+
+  <div [routerLink]="'tasa-personalizada'" class=" touch cursor-pointer py-4 col bg-primary-reverse border-round  
+  shadow-6 ">
+    <div class="flex flex-column gap-3 align-items-center">
+      <span class="pi pi-pencil font-light" style="font-size: 3.5rem"></span>
+      <p class="text-2xl  text-center">Tasa personal</p>
+    </div>
   </div>
+
+
+
 </div>

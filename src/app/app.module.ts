@@ -32,6 +32,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { TagModule } from 'primeng/tag';
 import { ConfigThemeComponent } from './components/config-theme/config-theme.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LabelHeaderPipe } from './pipes/label-header.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HeaderComponent } from './components/header/header.component';
     TasaPersonalizadaComponent,
     InfoComponent,
     ConfigThemeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LabelHeaderPipe
   ],
   imports: [
     BrowserModule,

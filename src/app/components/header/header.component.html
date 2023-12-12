@@ -1,9 +1,10 @@
-<div class="flex flex-column bg-primary">
+<div  *ngIf="getUrlWindow !== 'home'" style="border-radius: 0 0 50px 0px ;"
+  class="flex flex-column bg-primary   background-dailyCoin gap-1 pl-3 py-3 pr-6">
   <div class="flex justify-content-end">
-    <img class="w-3" src="assets/dc-blanco.png" alt="">
+    <img class="w-3" src="./assets/dc-blanco.png" alt="foto_blanca">
   </div>
   <div class="flex align-items-center justify-content-between">
-    <i class="pi pi-arrow-left" style="font-size: 2rem; color: #fff;"></i>
-    <p>{{title}}</p>
+    <i (click)="changeRute(getUrlWindow)"  style="font-size: 1.3rem" class="pi pi-arrow-left touch  circle"></i>
+    <p class="font-semibold text-3xl text-white">{{getUrlWindow | labelHeader}}</p>
   </div>
 </div>
