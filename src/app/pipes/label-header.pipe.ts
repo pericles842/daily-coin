@@ -11,8 +11,10 @@ export class LabelHeaderPipe implements PipeTransform {
    * @return {*}  {string}
    * @memberof LabelHeaderPipe
    */
-  transform(value: string,): string {
+  transform(value: any,): string {
 
+    if (!value as boolean) return 'Daily Coin';
+    
     switch (value) {
       case 'home':
         return 'Home'

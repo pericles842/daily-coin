@@ -23,7 +23,7 @@ export class HeaderComponent {
     const arrayUrl = window.location.href.split('/');
     const index = arrayUrl.length - 1;
 
-    return arrayUrl[index].toString();
+    return arrayUrl[index] === '' || arrayUrl[index] === 'home' ? false : arrayUrl[index].toString();
   }
   /**
    *te mueve a una ruta:)
@@ -31,7 +31,7 @@ export class HeaderComponent {
    * @param {string} path
    * @memberof HeaderComponent
    */
-  changeRute(path: string) {
+  changeRute(path: any) {
     let pathActual: string[] = [
       'bancos-config',
       'theme',
@@ -48,7 +48,6 @@ export class HeaderComponent {
     } else if (path == 'history') {
       newPath = 'home'
     }
-
 
     this.router.navigateByUrl(`/${newPath}`);
   }
