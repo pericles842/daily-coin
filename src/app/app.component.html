@@ -4,6 +4,21 @@
 </div>
 
 <app-header></app-header>
+<!-- TERMINOS Y CONDICIONES -->
+<p-dialog [(visible)]="contrato" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+  [draggable]="false" [resizable]="false" contentStyleClass="p-2 ">
+  <ng-template class="p-1" pTemplate="header">
+    <p class="text-primary font-semibold text-lg">Términos y condiciones</p>
+  </ng-template>
+  <p class="text-base text-center mb-5">Acepte los términos y Condiciones de uso de la aplicación</p>
+
+  <div class="flex justify-content-end gap-2 align-items-center">
+    <button pButton pRipple label="Leer" class="flex-none bg-primary p-2" (click)="moveContract()"></button>
+    <button pButton pRipple label="Aceptar" class="flex-none bg-primary p-2" (click)=" guardarTerminos()"></button>
+  </div>
+
+</p-dialog>
+
 
 <div class="p-3">
   <!-- ACTUALIZACIONES -->
@@ -12,20 +27,7 @@
     <p class="text-base  font-semibold	 m-0 ">¡Nueva Actualización disponible!</p>
     <button pButton pRipple label="Actualizar" class="flex-none bg-primary p-2" (click)="activateUpdate()"></button>
   </div>
-  <!-- TERMINOS Y CONDICIOES -->
-  <div *ngIf="contrato" class=" p-2 my-4 top-0 w-9 center-messages absolute z-4 
-      border-round bg-primary-reverse shadow-3 ">
-    <div class=" flex flex-column  ">
 
-      <i class=" flex justify-content-end pi pi-times " style="font-size: 1rem" (click)="contrato=false "></i>
-      <p class="text-base font-semibold  text-start my-2 ">Acepte los términos y Condiciones de uso de la aplicación</p>
-      <div class="flex justify-content-end gap-2 align-items-center">
-        <button pButton pRipple label="Leer" class="flex-none bg-primary p-2" (click)="moveContract()"></button>
-        <button pButton pRipple label="Aceptar" class="flex-none bg-primary p-2" (click)=" guardarTerminos()"></button>
-
-      </div>
-    </div>
-  </div>
   <!-- APP -->
   <router-outlet></router-outlet>
 </div>

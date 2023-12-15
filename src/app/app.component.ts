@@ -97,7 +97,8 @@ export class AppComponent implements OnInit {
     localStorage.setItem('contract', '1')
     this.contrato = false;
   }
-  moveContract(){
+  moveContract() {
     this.router.navigate(['config/info'])
+    this.contrato = false
   }
 }

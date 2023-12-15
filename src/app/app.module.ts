@@ -33,6 +33,8 @@ import { TagModule } from 'primeng/tag';
 import { ConfigThemeComponent } from './components/config-theme/config-theme.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LabelHeaderPipe } from './pipes/label-header.pipe';
+import { DialogModule } from 'primeng/dialog';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { LabelHeaderPipe } from './pipes/label-header.pipe';
     CalendarModule,
     MessagesModule,
     InputMaskModule,
+    DialogModule,
     TagModule,
     AccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
