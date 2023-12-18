@@ -14,7 +14,7 @@
   background-repeat: repeat;
 }
 
- 
+
 input[type="text"],
 [type="number"] {
   box-shadow: none !important;
@@ -42,6 +42,14 @@ a {
 
 .touch:active {
   transform: scale(1.02);
+}
+
+.touchx2 {
+  transition: transform 0.1s ease;
+}
+
+.touchx2:active {
+  transform: scale(1.5);
 }
 
 @import 'node_modules/primeng/resources/primeng.min.css';

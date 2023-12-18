@@ -13,13 +13,25 @@
     <i class="pi pi-dollar"></i>
   </ng-template>
 </div>
-<div *ngIf="loading ; else load " class="flex justify-content-center my-5 ">
-  <p #bs (click)="copyContent()" class="text-6xl text-color font-medium hover:text-primary cursor-pointer">
-    {{conversionMoney.total   | number:'1.2-2'}}
+
+<div *ngIf="loading ; else load " class="flex justify-content-center mt-5 align-items-center gap-5 ">
+
+  <p #bs (click)="copyContent()" class=" text-6xl text-color font-medium hover:text-primary cursor-pointer">
+    {{conversionMoney.total | number:'1.2-2' | parsePrice }}
     <span class="text-primary">{{conversionMoney.currency}}</span>
   </p>
+
   <!-- <span class="pi pi-copy"></span> -->
 </div>
+
+<!-- BOTONES DE SUMAR Y RESTAR  -->
+<div class="flex justify-content-between mb-8 mt-1 mx-3 align-items-center">
+  <!-- RESTAR BOTON -->
+  <i class="pi pi-minus touchx2 border-circle p-2 bg-primary" (click)="increasePrice(false)" style="font-size: 1.5rem"></i>
+  <!-- PLUS BOTÓN  bg-6xl-->
+  <i class="pi pi-plus touchx2 border-circle p-2 bg-primary" (click)="increasePrice(true)" style="font-size: 1.5rem"> </i>
+</div>
+
 <ng-template #load>
   <p-progressBar mode="indeterminate" [color]="'var(--primary-color)'" [style]="{ height: '5px'}">
   </p-progressBar>

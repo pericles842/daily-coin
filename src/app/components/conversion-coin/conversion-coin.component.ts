@@ -59,6 +59,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
    * @memberof ConversionCoinComponent
    */
   moneyConversion(money: number, bsToDollar: boolean) {
+
     if (bsToDollar) {
       this.conversionMoney.total = parseFloat((money / this.banco.price).toFixed(2));
     } else {
@@ -76,7 +77,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     this.conversionMoney.currency = this.bsToDollar ? '$' : 'Bs';
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
 
-    this.messageService.add({ severity: 'info', summary: `Haz cambiado de ${!this.bsToDollar ? 'Dólares' : 'Bolivares'} a ${this.bsToDollar ? 'Dólares' : 'Bolivares'}  ` , detail: '' });
+    this.messageService.add({ severity: 'info', summary: `Haz cambiado de ${!this.bsToDollar ? 'Dólares' : 'Bolivares'} a ${this.bsToDollar ? 'Dólares' : 'Bolivares'}  `, detail: '' });
 
     setTimeout(() => {
       this.messageService.clear();
@@ -99,5 +100,21 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.messageService.clear();
     }, 800);
+  }
+  /**
+   *Aumenta o disminuye en 1  
+   *
+   * @param {boolean} increase
+   * @memberof ConversionCoinComponent
+   */
+  increasePrice(increase: boolean) {
+
+    //si esta en true aumenta de lo contrario disminuye
+    increase ? this.conversionMoney.money_conversion++ : this.conversionMoney.money_conversion--;
+
+    // hacemos la conversion 
+    this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar);
+
+    
   }
 }

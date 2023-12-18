@@ -207,7 +207,6 @@ export class StatusCoinComponent implements OnInit {
   shareRateStatus() {
     let message = `🏦 ${this.entidadBancaria.title}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.last_update}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percent}  Bs ${this.entidadBancaria.change}\n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
 
-
     this._messageServiceSocial.sendEmailWhatsApp(encodeURIComponent(message));
   }
   /**

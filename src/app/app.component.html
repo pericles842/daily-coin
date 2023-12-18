@@ -5,12 +5,12 @@
 
 <app-header></app-header>
 <!-- TERMINOS Y CONDICIONES -->
-<p-dialog [(visible)]="contrato" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+<p-dialog [(visible)]="contrato" [modal]="true"   [style]="{ width: '80vw' }"
   [draggable]="false" [resizable]="false" contentStyleClass="p-2 ">
   <ng-template class="p-1" pTemplate="header">
     <p class="text-primary font-semibold text-lg">Términos y condiciones</p>
   </ng-template>
-  <p class="text-base text-center mb-5">Acepte los términos y Condiciones de uso de la aplicación</p>
+  <p class="text-base p-1 text-center mb-5">Acepte los términos y Condiciones de uso de la aplicación</p>
 
   <div class="flex justify-content-end gap-2 align-items-center">
     <button pButton pRipple label="Leer" class="flex-none bg-primary p-2" (click)="moveContract()"></button>

@@ -34,6 +34,7 @@ import { ConfigThemeComponent } from './components/config-theme/config-theme.com
 import { HeaderComponent } from './components/header/header.component';
 import { LabelHeaderPipe } from './pipes/label-header.pipe';
 import { DialogModule } from 'primeng/dialog';
+import { ParsePricePipe } from './pipes/parse-price.pipe';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { DialogModule } from 'primeng/dialog';
     InfoComponent,
     ConfigThemeComponent,
     HeaderComponent,
-    LabelHeaderPipe
+    LabelHeaderPipe,
+    ParsePricePipe
   ],
   imports: [
     BrowserModule,
