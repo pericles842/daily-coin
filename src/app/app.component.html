@@ -20,7 +20,7 @@
 </p-dialog>
 
 
-<div class="p-3">
+<div class="p-3 ">
   <!-- ACTUALIZACIONES -->
   <div *ngIf="updates" class="  p-2 my-4 top-0 w-9 center-messages justify-content-between flex absolute  align-items-center z-5 
       border-round bg-primary-reverse shadow-3 ">
@@ -31,4 +31,6 @@
   <!-- APP -->
   <router-outlet></router-outlet>
 </div>
+<app-config-theme style="display: none;"></app-config-theme>
+
 <app-topbar></app-topbar>

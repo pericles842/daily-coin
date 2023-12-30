@@ -37,10 +37,10 @@ export class ConfigThemeComponent implements OnInit {
   ]
 
   ngOnInit() {
-    if (JSON.parse(localStorage.getItem('configTheme') as string) !== undefined) return
+   // if (JSON.parse(localStorage.getItem('configTheme') as string) !== undefined) return
     let themeConfig = JSON.parse(localStorage.getItem('configTheme') as string);
     let indexConfig = this.temas.findIndex(tema => tema.path == themeConfig.path)
-
+    
     this.selectTheme(indexConfig)
 
   }

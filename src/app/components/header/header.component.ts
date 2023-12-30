@@ -20,13 +20,24 @@ export class HeaderComponent {
    */
   get getUrlWindow() {
 
+    //todas las rutas donde se va a mostrar el headear
+    let pathActual: string[] = [
+      'bancos-config',
+      'theme',
+      'tasa-personalizada',
+      'info',
+      'config',
+      'history'
+    ];
+
     const arrayUrl = window.location.href.split('/');
     const index = arrayUrl.length - 1;
 
-    return arrayUrl[index] === '' || arrayUrl[index] === 'home' ? false : arrayUrl[index].toString();
+    return pathActual.includes(arrayUrl[index]) ? arrayUrl[index].toString() : false
+    // return arrayUrl[index] === '' || arrayUrl[index] === 'home' ? false : arrayUrl[index].toString();
   }
   /**
-   *te mueve a una ruta:)
+   *al presionar la flecha, se meve a una ruta según donde este
    *
    * @param {string} path
    * @memberof HeaderComponent
