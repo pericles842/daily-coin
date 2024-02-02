@@ -50,12 +50,15 @@ export class ConfigBancosComponent implements OnInit {
    * @param {*} event
    * @memberof ConfigBancosComponent
    */
-  banksSelected(event: any, index: number) {
+  banksSelected(index: number) {
+
     //banco del sesion storage
     let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
-
-    this.coinService.listBanksConfiguration[index].active = event.checked ? true : false;
-    banksStorage[index].active = event.checked ? true : false
+    let statusBank: boolean = banksStorage[index].active
+    
+    
+    this.coinService.listBanksConfiguration[index].active = !statusBank ? true : false;
+    banksStorage[index].active = !statusBank ? true : false
 
     localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
