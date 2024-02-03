@@ -51,16 +51,29 @@ export class ConfigBancosComponent implements OnInit {
    * @memberof ConfigBancosComponent
    */
   banksSelected(index: number) {
-
-    //banco del sesion storage
+    console.log('banksSelected');
+    //banco del  sesion storage
     let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
     let statusBank: boolean = banksStorage[index].active
-    
-    
+
+
     this.coinService.listBanksConfiguration[index].active = !statusBank ? true : false;
     banksStorage[index].active = !statusBank ? true : false
 
     localStorage.setItem('listBanks', JSON.stringify(banksStorage));
+
+  }
+  deleteBankPersonalice(index: number, isClick: boolean) {
+  //  let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
+    
+  //  let listBanksConfiguration  =  this.coinService.listBanksConfiguration[index] //cmbi
+  //  listBanksConfiguration.splice(index, 1)
+
+    // banksStorage[index].splice(index, 1);
+    //localStorage.setItem('listBanks', JSON.stringify(banksStorage));
+
+    //console.log(listBanksConfiguration);
+
 
   }
 
