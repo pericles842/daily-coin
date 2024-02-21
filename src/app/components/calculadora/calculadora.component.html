@@ -1,0 +1,12 @@
+<div class="flex flex-column gap-2">
+  <div style=" height: 70px;" class="mb-1">
+    <h6 class="text-color text-4xl text-right my-3"> {{sum_of_box}} </h6>
+  </div>
+  <div *ngFor="let buttons of buttons_calculator; let i = index" class="grid">
+    <div *ngFor="let button of buttons; let i = index" class="col p-0 m-1 justify-content-center ">
+      <div (click)="concatNumber(button.value)" class="shadow-3 text-center w-full text-2xl touch border-round-xl font-bold p-3  cursor-pointer "
+        [ngClass]="button.class + button.icon">{{button.label}}</div>
+    </div>
+  </div>
+</div>
+<!-- border-1 border-red-700 -->
