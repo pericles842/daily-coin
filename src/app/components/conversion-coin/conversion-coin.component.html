@@ -1,6 +1,6 @@
-<p-dialog  header="Calculadora" [(visible)]="modal_calculator" [resizable]="false" [modal]="true"
+<p-dialog header="Calculadora" [(visible)]="modal_calculator" [resizable]="false" [modal]="true"
   [style]="{ width: '300px' }">
-  <app-calculadora></app-calculadora>
+  <app-calculadora (total_price)="calculatorPrice($event)"></app-calculadora>
 </p-dialog>
 
 <div class="flex gap-3 justify-content-between align-items-center my-2">

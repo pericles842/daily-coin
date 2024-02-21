@@ -116,4 +116,10 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     // hacemos la conversion 
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar);
   }
+  calculatorPrice(total: string) {
+    this.conversionMoney.money_conversion = parseFloat(total);
+    this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
+    this.modal_calculator = false
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calculadora',
@@ -16,12 +16,20 @@ export class CalculadoraComponent implements OnInit {
   buttons_calculator: Array<{ label: string, class: string, value: string, icon?: string }[]> = [];
 
   /**
+   *Emite el precio total
+   *
+   * @memberof CalculadoraComponent
+   */
+  @Output() total_price = new EventEmitter<string>();
+
+  /**
    *Total de la suema 
    *
    * @type {string}
    * @memberof CalculadoraComponent
    */
   sum_of_box: string = '0';
+  touch_igual: boolean = false;
 
   special_characters: any = {};
 
@@ -49,14 +57,9 @@ export class CalculadoraComponent implements OnInit {
           icon: '  '
         },
         {
-          label: '/',
+          label: '+',
           class: ' bg-primary ',
-          value: 'dividir'
-        },
-        {
-          label: '*',
-          class: 'bg-primary ',
-          value: 'multiplicar'
+          value: 'sumar'
         }
       ],
       [
@@ -77,9 +80,9 @@ export class CalculadoraComponent implements OnInit {
           value: '9'
         },
         {
-          label: '+',
-          class: ' bg-primary ',
-          value: 'sumar'
+          label: '*',
+          class: 'bg-primary ',
+          value: 'multiplicar'
         }
       ],
       [
@@ -100,9 +103,9 @@ export class CalculadoraComponent implements OnInit {
           value: '6'
         },
         {
-          label: '=',
+          label: '/',
           class: ' bg-primary ',
-          value: 'igual'
+          value: 'dividir'
         }
       ],
       [
@@ -127,6 +130,19 @@ export class CalculadoraComponent implements OnInit {
           class: ' bg-primary ',
           value: '.'
         }
+      ],
+      [
+        {
+          label: '0',
+          class: ' bg-primary-reverse w-full ',
+          value: '0',
+          icon: ''
+        },
+        {
+          label: '=',
+          class: ' bg-primary ',
+          value: 'igual'
+        }
       ]
     ]
   }
@@ -137,11 +153,12 @@ export class CalculadoraComponent implements OnInit {
     //si es 0 y s diferene a n numero  retorna 
     if (this.sum_of_box == '0' && isNaN(parseInt(button))) return
     //si es sero y es igual a un numero limpia
-    if (this.sum_of_box == '0' && !isNaN(parseInt(button))) this.sum_of_box = "";
+    if (this.sum_of_box == '0' && !isNaN(parseInt(button)) || this.touch_igual) this.sum_of_box = "";
+
 
 
     if (this.special_characters[button]) {
-      //if (this.sum_of_box.indexOf(button)) return
+      if (this.sum_of_box.indexOf(this.special_characters[button]) !== -1) return
 
       //*validacion para borrar y limpiar
       if (typeof this.special_characters[button] == 'function') {
@@ -154,6 +171,14 @@ export class CalculadoraComponent implements OnInit {
     }
 
 
-    this.sum_of_box = this.sum_of_box + button;
+    if (this.special_characters[button] == "igual") {
+      this.sum_of_box = eval(this.sum_of_box);
+      this.total_price.emit(this.sum_of_box)
+      this.touch_igual = true
+    } else {
+      this.sum_of_box = this.sum_of_box + button
+      this.touch_igual = false
+    }
   }
+
 }
