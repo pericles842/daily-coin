@@ -35,7 +35,7 @@ input[type="text"],
 a {
   color: inherit;
 }
- 
+
 .touch {
   transition: transform 0.1s ease;
 }
@@ -50,6 +50,16 @@ a {
 
 .touchx2:active {
   transform: scale(1.5);
+}
+
+/* Ancho del scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 6px;
 }
 
 @import 'node_modules/primeng/resources/primeng.min.css';

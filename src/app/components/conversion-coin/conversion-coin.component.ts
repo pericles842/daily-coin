@@ -11,7 +11,7 @@ import { Bank } from 'src/app/models/bank';
 export class ConversionCoinComponent implements OnInit, OnChanges {
 
   @Input() banco!: Bank;
-  modal_calculator: boolean = true
+  modal_calculator: boolean = false
 
   /**
    *Objeto conversor
