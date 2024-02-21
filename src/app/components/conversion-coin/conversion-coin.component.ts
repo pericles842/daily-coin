@@ -11,6 +11,7 @@ import { Bank } from 'src/app/models/bank';
 export class ConversionCoinComponent implements OnInit, OnChanges {
 
   @Input() banco!: Bank;
+  modal_calculator: boolean = false
 
   /**
    *Objeto conversor
@@ -114,7 +115,5 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
 
     // hacemos la conversion 
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar);
-
-    
   }
 }

@@ -50,13 +50,33 @@ export class ConfigBancosComponent implements OnInit {
    * @param {*} event
    * @memberof ConfigBancosComponent
    */
-  banksSelected(event: any, index: number) {
-    //banco del sesion storage
+  banksSelected(index: number) {
+    console.log('banksSelected');
+    //banco del  sesion storage
+    let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
+    let statusBank: boolean = banksStorage[index].active
+
+
+    this.coinService.listBanksConfiguration[index].active = !statusBank ? true : false;
+    banksStorage[index].active = !statusBank ? true : false
+
+    localStorage.setItem('listBanks', JSON.stringify(banksStorage));
+
+  }
+  /**
+   *Eliminar bancos personalizados
+   *
+   * @param {number} index
+   * @param {boolean} isClick
+   * @memberof ConfigBancosComponent
+   */
+  deleteBankPersonalice(index: number, isClick: boolean) {
     let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
 
-    this.coinService.listBanksConfiguration[index].active = event.checked ? true : false;
-    banksStorage[index].active = event.checked ? true : false
+    let listBanksConfiguration = this.coinService.listBanksConfiguration;
+    listBanksConfiguration.splice(index, 1)
 
+    banksStorage.splice(index, 1);
     localStorage.setItem('listBanks', JSON.stringify(banksStorage));
 
   }

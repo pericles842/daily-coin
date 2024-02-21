@@ -12,8 +12,8 @@ import { MessageServiceSocial } from 'src/app/services/message';
   styleUrls: ['./status-coin.component.scss']
 })
 export class StatusCoinComponent implements OnInit {
-
-  /**
+   
+  /** 
    *enmarado para traer una entidad
    *
    * @type {BankingRole}
