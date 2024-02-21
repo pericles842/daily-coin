@@ -7,8 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculadoraComponent implements OnInit {
 
+  /**
+   *Botones de la calculadora
+   *
+   * @type {Array<{ label: string, class: string, value: string, icon?: string }[]>}
+   * @memberof CalculadoraComponent
+   */
   buttons_calculator: Array<{ label: string, class: string, value: string, icon?: string }[]> = [];
 
+  /**
+   *Total de la suema 
+   *
+   * @type {string}
+   * @memberof CalculadoraComponent
+   */
   sum_of_box: string = '0';
 
   special_characters: any = {};
@@ -19,7 +31,7 @@ export class CalculadoraComponent implements OnInit {
       "restar": '-',
       "multiplicar": '*',
       "dividir": "/",
-      "del": "del",
+      "del": () => { this.sum_of_box = this.sum_of_box.slice(0, -1) },
       "ac": () => { this.sum_of_box = "0" },
       "igual": "igual"
     }
@@ -120,23 +132,25 @@ export class CalculadoraComponent implements OnInit {
   }
 
   concatNumber(button: string) {
-    //si es 0 y s diferene a n numero  retorna 
-    //if (this.sum_of_box === '0' && typeof Number(button) != 'number') return
-    //si es sero y es igual a un numero limpia
-    if (this.sum_of_box === '0' && typeof Number(button) == 'number') this.sum_of_box = "";
+    //*validación para primera entrada
 
-    switch (button) {
-      case "del":
-        
-        this.sum_of_box.slice(0, -1)
-        console.log('ss');
-        return;
-      case "ac":
-        this.sum_of_box = "0"
-        return;
-      default:
-        button
-        
+    //si es 0 y s diferene a n numero  retorna 
+    if (this.sum_of_box == '0' && isNaN(parseInt(button))) return
+    //si es sero y es igual a un numero limpia
+    if (this.sum_of_box == '0' && !isNaN(parseInt(button))) this.sum_of_box = "";
+
+
+    if (this.special_characters[button]) {
+      //if (this.sum_of_box.indexOf(button)) return
+
+      //*validacion para borrar y limpiar
+      if (typeof this.special_characters[button] == 'function') {
+        const action = this.special_characters[button];
+
+        action();
+        if (this.sum_of_box == "") this.sum_of_box = "0"
+        return
+      } else button = this.special_characters[button]
     }
 
 
