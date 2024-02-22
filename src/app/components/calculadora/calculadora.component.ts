@@ -153,12 +153,12 @@ export class CalculadoraComponent implements OnInit {
     //si es 0 y s diferene a n numero  retorna 
     if (this.sum_of_box == '0' && isNaN(parseInt(button))) return
     //si es sero y es igual a un numero limpia
-    if (this.sum_of_box == '0' && !isNaN(parseInt(button)) || this.touch_igual) this.sum_of_box = "";
+    if (this.sum_of_box == '0' && !isNaN(parseInt(button))) this.sum_of_box = "";
+    // validarcion para limpiar la calculadora || this.touch_igual
 
 
-
-    if (this.special_characters[button]) {
-      if (this.sum_of_box.indexOf(this.special_characters[button]) !== -1) return
+    if (this.special_characters[button] && this.special_characters[button] != 'igual') {
+      if (/[+\-*\/]/.test(this.sum_of_box)) return
 
       //*validacion para borrar y limpiar
       if (typeof this.special_characters[button] == 'function') {
@@ -169,7 +169,6 @@ export class CalculadoraComponent implements OnInit {
         return
       } else button = this.special_characters[button]
     }
-
 
     if (this.special_characters[button] == "igual") {
       this.sum_of_box = eval(this.sum_of_box);
