@@ -60,6 +60,11 @@ export class CalculadoraComponent implements OnInit {
           label: '+',
           class: ' bg-primary ',
           value: 'sumar'
+        },
+        {
+          label: '-',
+          class: ' bg-primary ',
+          value: 'restar'
         }
       ],
       [
@@ -158,7 +163,7 @@ export class CalculadoraComponent implements OnInit {
 
 
     if (this.special_characters[button] && this.special_characters[button] != 'igual') {
-      if (/[+\-*\/]/.test(this.sum_of_box)) return
+      if (this.validarOperadores(this.sum_of_box)) return
 
       //*validacion para borrar y limpiar
       if (typeof this.special_characters[button] == 'function') {
@@ -179,5 +184,21 @@ export class CalculadoraComponent implements OnInit {
       this.touch_igual = false
     }
   }
+  /**
+   *valida operadores 
+   *
+   * @param {string} str operacion
+   * @return {*} booleano
+   * @memberof CalculadoraComponent
+   */
+  validarOperadores(str: string) {
 
+    // Verifica si hay uno de los operadores *, -, o /
+    if (/[*/\-]/.test(str)) return true;
+    // Verifica si hay más de un signo de suma seguido por un número
+    if (/\+\d+\++\d*/.test(str)) return true
+
+    return false;
+
+  }
 }
