@@ -27,9 +27,9 @@ export class HistoryCoinComponent implements OnInit {
   getHistory() {
     this.loading = true
     this.coinService.historyEntities().subscribe({
-      next: (results: any) => {
-        results.results
-        this.history = results.results
+      next: (res: any) => {
+        console.log(res);
+        this.history = res;
         this.loading = false
       },
       error: (erro) => {
@@ -38,8 +38,8 @@ export class HistoryCoinComponent implements OnInit {
 
         setTimeout(() => {
           this.messageService.clear();
-         // this.route.navigateByUrl('/history')
-         window.location.href 
+          // this.route.navigateByUrl('/history')
+          window.location.href
 
         }, 1100);
       }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { environment } from 'environment';
+import { environmentLocal } from 'environment';
 import { BankingRole } from '../enum/entiesBanking';
 import { Bank } from '../models/bank';
 import { monthsInQuarter } from 'date-fns';
@@ -53,7 +54,7 @@ export class CoinService {
    * @memberof CoinService
    */
   historyEntities() {
-    return this.http.get(environment.url + 'api/v1/dollar/history');
+    return this.http.get(environmentLocal.url + 'api/history/get ');
   }
   /**
    *Retorna los precios del banco central
