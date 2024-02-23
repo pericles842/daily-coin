@@ -36,7 +36,7 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (this.banco !== undefined) {
       this.loading = true;
-      this.conversionMoney.money_conversion = this.banco.price
+      this.conversionMoney.money_conversion =  this.banco.price 
       this.moneyConversion(this.banco.price, this.bsToDollar)
       this.loading = false;
     }

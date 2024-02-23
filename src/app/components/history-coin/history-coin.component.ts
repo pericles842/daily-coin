@@ -28,7 +28,6 @@ export class HistoryCoinComponent implements OnInit {
     this.loading = true
     this.coinService.historyEntities().subscribe({
       next: (res: any) => {
-        console.log(res);
         this.history = res;
         this.loading = false
       },

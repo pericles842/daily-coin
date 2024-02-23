@@ -12,7 +12,7 @@ import { MessageServiceSocial } from 'src/app/services/message';
   styleUrls: ['./status-coin.component.scss']
 })
 export class StatusCoinComponent implements OnInit {
-   
+
   /** 
    *enmarado para traer una entidad
    *
@@ -46,7 +46,7 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.typeStatus == 'bcv' ? this.getBankBcv() : this.getBank(this.typeStatus);
+    this.getBank(this.typeStatus);
 
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
     if (localStorage.getItem('listBanks')) {
@@ -68,30 +68,6 @@ export class StatusCoinComponent implements OnInit {
         const response = res;
 
         this.entidadBancaria = response;
-        this.loading = false;
-
-        this.bankingEntity.emit(this.entidadBancaria)
-      },
-      error: (err) => {
-        this.loading = false;
-        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
-      }
-    }
-    );
-  }
-  /**
-   *obtiene el precio del banco censal
-   *
-   * @return {*}  {*}
-   * @memberof StatusCoinComponent
-   */
-  getBankBcv(): any {
-    this.loading = true;
-    this.coinService.getBankDailyCoinBcv().subscribe({
-      next: (res: any) => {
-
-        this.entidadBancaria = res.bank
-
         this.loading = false;
 
         this.bankingEntity.emit(this.entidadBancaria)
@@ -126,51 +102,33 @@ export class StatusCoinComponent implements OnInit {
     //Valida los bancos en base  al la configuración o por el default
     const validBankingRoles = this.defaultRolesTheBank(saveBankingRoles)
 
-
-
     this.coinService.listBankingDailyCoin().subscribe({
       next: (res: any) => {
 
-        [res.newBankingList].forEach((entidad: any) => {
-          Object.keys(entidad).forEach((key: string) => {
+        console.log(res);
 
-            const banco = new Bank();
-            const entidadKey = entidad[key];
+        res.lista_bancos.forEach((bank: Bank) => {
+          let symbol = bank.label_status === 'bajo' ? '▼' : bank.label_status === 'alto' ? '▲' : '';
 
-            banco.last_update = entidadKey.last_update;
-            banco.price = entidadKey.price;
-            banco.price_old = entidadKey.price_old;
-            banco.title = entidadKey.title;
-            banco.type = entidadKey.type;
-            banco.key = key;
-            banco.color = entidadKey.color;
-            banco.percent = entidadKey.percent;
-            banco.symbol = entidadKey.symbol;
-            banco.change = entidadKey.change;
+          bank.price = bank.price;
+          bank.percentage = symbol + ' ' + bank.percentage;
+          bank.symbol = symbol;
 
-            //según la configuración se activa o desactiva
-            if (validBankingRoles.includes(banco.key)) banco.active = true;
+          //según la configuración se activa o desactiva
+          if (validBankingRoles.includes(bank.key)) bank.active = true;
 
-            this.coinService.listBanksConfiguration.push(banco);
+          //guardado de localstorage y servicios
+          this.coinService.listBanksConfiguration.push(bank);
+          let banks = JSON.stringify(this.coinService.listBanksConfiguration)
+          localStorage.setItem('listBanks', banks);
 
-            let banks = JSON.stringify(this.coinService.listBanksConfiguration)
-            localStorage.setItem('listBanks', banks);
-          })
-        });
-
+        })
+        console.log(this.coinService.listBanksConfiguration);
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
       }
     });
-
-
-    this.personaliceBank.forEach((beforeBank) => {
-
-      this.coinService.listBanksConfiguration.push(beforeBank)
-
-    })
-    this.personaliceBank = [];
   }
   /**
    *Cambia de banco al seleccionarlo en el botón
@@ -205,7 +163,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   shareRateStatus() {
-    let message = `🏦 ${this.entidadBancaria.title}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.last_update}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percent}  Bs ${this.entidadBancaria.change}\n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
+    let message = `🏦 ${this.entidadBancaria.name}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.date}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percentage} \n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
 
     this._messageServiceSocial.sendEmailWhatsApp(encodeURIComponent(message));
   }
@@ -258,7 +216,7 @@ export class StatusCoinComponent implements OnInit {
     const indexRandom: number = Math.floor(Math.random() * (filtersBanks.length - 1 - 0)) + 0;
 
     //SI el banco es igual al seleccionado entonces cambiara a uno radon
-    if (listBanksConfiguration.title === this.entidadBancaria.title) this.entidadBancaria = filtersBanks[indexRandom];
+    if (listBanksConfiguration.name === this.entidadBancaria.name) this.entidadBancaria = filtersBanks[indexRandom];
 
   }
   /**

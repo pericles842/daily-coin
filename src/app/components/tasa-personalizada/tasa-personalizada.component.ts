@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { BankingRole } from 'src/app/enum/entiesBanking';
 import { dateConvert } from 'src/app/functions/date';
 import { Bank } from 'src/app/models/bank';
 import { CoinService } from 'src/app/services/coin.service';
@@ -32,8 +33,8 @@ export class TasaPersonalizadaComponent {
   saveCup() {
     let dateToday = new Date()
     this.newMonto.active = true;
-    this.newMonto.last_update = dateConvert(dateToday);
-    this.newMonto.key = 'personalice_bank';
+    this.newMonto.date= dateConvert(dateToday);
+    this.newMonto.key = BankingRole.personalice_bank;
 
     this.coinService.listBanksConfiguration.push(this.newMonto);
     this.messageService.add({ severity: 'success', summary: '', detail: 'Guardado con éxito' });

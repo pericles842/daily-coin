@@ -9,7 +9,7 @@
       [alt]="banco.key">
     <!-- nombe del banco -->
     <label [ngClass]="banco.active ? 'text-white':'text-color-secondary'" class="text-3xl"
-      [for]="banco.key">{{banco.title}}</label>
+      [for]="banco.key">{{banco.name}}</label>
 
     <!-- elimina banco personalizado -->
     <i *ngIf="banco.key == 'personalice_bank'" class="pi pi-times p-2 circle" style="font-size: 1.5rem"

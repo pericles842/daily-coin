@@ -1,13 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { forkJoin } from 'rxjs';
-import { environment } from 'environment';
-import { environmentLocal } from 'environment';
+import { Injectable } from '@angular/core';
+import { environment, environmentLocal } from 'environment';
+import { Observable, forkJoin } from 'rxjs';
 import { BankingRole } from '../enum/entiesBanking';
 import { Bank } from '../models/bank';
-import { monthsInQuarter } from 'date-fns';
-import { Months } from '../enum/Months';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +34,7 @@ export class CoinService {
    * @memberof CoinService
    */
   listBankingEntities() {
-    return this.http.get(environment.url + 'api/v1/dollar/page?page=exchangemonitor')
+    return this.http.get(environmentLocal.url + 'api/entity/list-entities')
   }
   /**
    *Obtiene una entidad bancaria
@@ -63,7 +59,7 @@ export class CoinService {
    * @memberof CoinService
    */
   getBankBCV() {
-    return this.http.get(environment.url + `api/v1/dollar/page?page=bcv`);
+    return this.http.get(environmentLocal.url + `api/entity/get-bcv`);
 
   }
   /**
@@ -81,18 +77,13 @@ export class CoinService {
       const bcvObservable = this.getBankBCV();
 
       forkJoin([listBankingObservable, bcvObservable]).subscribe({
-        next: ([banking, bankingBCV]: [any, any]) => {
-          newBankingList = banking.monitors;
+        next: ([lista_bancos, bankingBCV]: [any, any]) => {
 
-          let { date, time } = bankingBCV.datetime;
+          //asignamos el precio de la petición del banco central el la lista de bancos
+          const price_bcv_api = bankingBCV.currency[1].price
+          lista_bancos[5].price = price_bcv_api
 
-          //precio actualizado
-          newBankingList.bcv.price = bankingBCV.monitors.usd.price
-          newBankingList.bcv.last_update = this.transformDate(date, time)
-
-          observer.next({
-            newBankingList,
-          });
+          observer.next({ lista_bancos });
           observer.complete();
         },
         error: (err) => {
@@ -101,58 +92,5 @@ export class CoinService {
       });
     });
   }
-  /**
-   *RETORNA UN STRING DE LA FECHA
-   * 
-   * @param {string} dateToString
-   * @memberof CoinService
-   */
-  transformDate(date: string, concat: string) {
 
-    //convertimos array
-    let dateToArray = date.split(" ")
-
-
-    //contenemos
-    let dateToString = `${dateToArray[1]}/${Months[dateToArray[3] as any]}/${dateToArray[5]} `;
-
-    return dateToString + ' ' + concat
-
-  }
-  /**
-   *obtiene la tasa del banco central
-   *
-   * @return {*} BCV
-   * @memberof CoinService
-   */
-  getBankDailyCoinBcv() {
-
-    return new Observable((observer) => {
-
-      let newBankingList: any = {}
-
-      const listBankingObservable = this.listBankingEntities();
-      const bcvObservable = this.getBankBCV();
-
-      forkJoin([listBankingObservable, bcvObservable]).subscribe({
-        next: ([banking, bankingBCV]: [any, any]) => {
-          newBankingList = banking.monitors;
-
-          let { date, time } = bankingBCV.datetime;
-
-          //precio actualizado
-          newBankingList.bcv.price = bankingBCV.monitors.usd.price
-          newBankingList.bcv.last_update = this.transformDate(date, time)
-
-          observer.next({
-            bank: newBankingList.bcv
-          });
-          observer.complete();
-        },
-        error: (err) => {
-          observer.error(err);
-        },
-      });
-    });
-  }
 }
