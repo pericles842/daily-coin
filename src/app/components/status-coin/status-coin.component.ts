@@ -109,9 +109,9 @@ export class StatusCoinComponent implements OnInit {
 
         res.lista_bancos.forEach((bank: Bank) => {
           let symbol = bank.label_status === 'bajo' ? '▼' : bank.label_status === 'alto' ? '▲' : '';
-
-          bank.price = bank.price;
-          bank.percentage = symbol + ' ' + bank.percentage;
+          let price_string = bank.price.toString().replace(',', '.');
+          bank.price = parseFloat(price_string).toFixed(2) as unknown as number;
+          bank.percentage = bank.percentage;
           bank.symbol = symbol;
 
           //según la configuración se activa o desactiva
@@ -163,7 +163,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   shareRateStatus() {
-    let message = `🏦 ${this.entidadBancaria.name}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.date}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percentage} \n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
+    let message = `🏦 ${this.entidadBancaria.name}\n💵 ${this.entidadBancaria.price} Bs \n🕒 ${this.entidadBancaria.date}\n${this.entidadBancaria.symbol == '' ? '' : this.entidadBancaria.symbol == '▲' ? '🔺' : '🔻'}  ${this.entidadBancaria.percentage}\n\nmíralo tu mismo http://cointobs.rf.gd`.trim()
 
     this._messageServiceSocial.sendEmailWhatsApp(encodeURIComponent(message));
   }
