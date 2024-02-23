@@ -64,13 +64,14 @@ export class StatusCoinComponent implements OnInit {
     this.loading = true;
     this.coinService.getBanking(bankingRole).subscribe({
       next: (res: any) => {
+        console.log(res);
+        
+        // const response = res;
 
-        const response = res;
+        // this.entidadBancaria = response;
+        // this.loading = false;
 
-        this.entidadBancaria = response;
-        this.loading = false;
-
-        this.bankingEntity.emit(this.entidadBancaria)
+       // this.bankingEntity.emit(this.entidadBancaria)
       },
       error: (err) => {
         this.loading = false;
@@ -105,8 +106,6 @@ export class StatusCoinComponent implements OnInit {
     this.coinService.listBankingDailyCoin().subscribe({
       next: (res: any) => {
 
-        console.log(res);
-
         res.lista_bancos.forEach((bank: Bank) => {
           let symbol = bank.label_status === 'bajo' ? '▼' : bank.label_status === 'alto' ? '▲' : '';
           let price_string = bank.price.toString().replace(',', '.');
@@ -123,7 +122,8 @@ export class StatusCoinComponent implements OnInit {
           localStorage.setItem('listBanks', banks);
 
         })
-        console.log(this.coinService.listBanksConfiguration);
+        //bandera de que se lleno la configuraron de bancos
+        this.coinService.listBanksConfigurationLoaded.complete()
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
