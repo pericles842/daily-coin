@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environmentLocal } from 'environment';
-import { Observable, Subject, combineLatest, forkJoin, from, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, forkJoin, from, map } from 'rxjs';
 import { BankingRole } from '../enum/entiesBanking';
 import { Bank } from '../models/bank';
 
@@ -16,14 +16,7 @@ export class CoinService {
    * @memberof Coi as anyService
    */
   listBanksConfiguration: Bank[] = [];
-
-  /**
-   *Bandera de carga para la lista de bancos
-   *
-   * @type {Subject<void>}
-   * @memberof CoinService
-   */
-  listBanksConfigurationLoaded: Subject<void> = new Subject<void>();
+ 
 
   /**
    *conexión a bas de datos
@@ -64,22 +57,7 @@ export class CoinService {
 
   }
 
-  /**
-  *Obtiene una entidad bancaria
-  *
-  * @memberof CoinService
-  */
-  getBanking(entity: BankingRole): Observable<Bank> {
-    return combineLatest([
-      from(this.listBanksConfiguration),
-      this.listBanksConfigurationLoaded
-    ]).pipe(
-      map(([listBanks, _]) => {
-        console.log('listBanksConfigurationLoaded se ha completado');
-        return listBanks;
-      })
-    );
-  }
+  
   /**
    *Lista de bancos propios de la app
    *

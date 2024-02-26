@@ -25,7 +25,7 @@
   </ng-template>
 </div>
 <!-- PRECIO -->
-<div *ngIf="loading ; else load" class="flex justify-content-center mt-5 align-items-center gap-5 ">
+<div class="flex justify-content-center mt-5 align-items-center gap-5 ">
 
   <i class="pi pi-minus touchx2 border-round p-2 bg-primary" (click)="increasePrice(false)"
     style="font-size: 1.5rem"></i>
@@ -40,8 +40,3 @@
   </i>
   <!-- <span class="pi pi-copy"></span> -->
 </div>
-
-<ng-template #load>
-  <p-progressBar mode="indeterminate" [color]="'var(--primary-color)'" [style]="{ height: '5px'}">
-  </p-progressBar>
-</ng-template>

@@ -34,23 +34,26 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     private messageService: MessageService
   ) { }
   ngOnInit() {
-    if (this.banco !== undefined) {
-      this.loading = true;
-      this.conversionMoney.money_conversion =  this.banco.price 
-      this.moneyConversion(this.banco.price, this.bsToDollar)
-      this.loading = false;
-    }
-    this.loading = false;
+    // if (this.banco !== undefined) {
+    //   this.loading = true;
+    //   this.conversionMoney.money_conversion =  this.banco.price 
+    //   this.moneyConversion(this.banco.price, this.bsToDollar)
+    //   this.loading = false;
+    // }
+    // this.loading = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
     if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key) {
+    
+      if (!this.loading) {
+        this.conversionMoney.money_conversion = this.banco.price
+        this.loading = true;
+      }
+       
       this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
-    } else if (this.banco) {
-      this.loading = true;
-      this.conversionMoney.money_conversion = this.banco.price
-      this.moneyConversion(this.banco.price, this.bsToDollar)
-    }
+     } 
   }
   /**
    *Realiza la conversion de dollar a bolivares y diversa
@@ -116,6 +119,12 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
     // hacemos la conversion 
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar);
   }
+  /**
+   *Evento que obtiene el total de la calculadora
+   *
+   * @param {string} total
+   * @memberof ConversionCoinComponent
+   */
   calculatorPrice(total: string) {
     this.conversionMoney.money_conversion = parseFloat(total);
     this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)

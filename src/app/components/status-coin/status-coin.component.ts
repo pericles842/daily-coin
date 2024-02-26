@@ -46,8 +46,6 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getBank(this.typeStatus);
-
     // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
     if (localStorage.getItem('listBanks')) {
       this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
@@ -60,25 +58,9 @@ export class StatusCoinComponent implements OnInit {
    *
    * @memberof AppComponent
    */
-  getBank(bankingRole: BankingRole): any {
-    this.loading = true;
-    this.coinService.getBanking(bankingRole).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        
-        // const response = res;
-
-        // this.entidadBancaria = response;
-        // this.loading = false;
-
-       // this.bankingEntity.emit(this.entidadBancaria)
-      },
-      error: (err) => {
-        this.loading = false;
-        this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
-      }
-    }
-    );
+  getBank(bankingRole: BankingRole, listBanksConfiguration: Bank[]): any {
+    this.entidadBancaria = listBanksConfiguration.find(item => item.key === bankingRole) as Bank
+    this.bankingEntity.emit(this.entidadBancaria)
   }
 
   defaultRolesTheBank(saveBankingRoles: BankingRole[]) {
@@ -99,7 +81,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   listBanks(saveBankingRoles: BankingRole[] = []): void {
-
+    this.loading = true
     //Valida los bancos en base  al la configuración o por el default
     const validBankingRoles = this.defaultRolesTheBank(saveBankingRoles)
 
@@ -122,10 +104,11 @@ export class StatusCoinComponent implements OnInit {
           localStorage.setItem('listBanks', banks);
 
         })
-        //bandera de que se lleno la configuraron de bancos
-        this.coinService.listBanksConfigurationLoaded.complete()
+        this.getBank(this.typeStatus, this.coinService.listBanksConfiguration);
+        this.loading = false
       },
       error: (err) => {
+        this.loading = false
         this.messageService.add({ severity: 'error', summary: 'Error de carga', detail: 'Hubo problema, por favor refrescar la pagina' });
       }
     });
@@ -240,17 +223,4 @@ export class StatusCoinComponent implements OnInit {
     this.listBanks(beforeBanks);
 
   }
-
-
-  /**
-   *
-   Carga en base al local storage
-   *
-   * @readonly
-   * @memberof StatusCoinComponent
-   */
-  get statusLoading() {
-    return localStorage.getItem('listBanks')
-  }
-
 }
