@@ -46,12 +46,7 @@ export class StatusCoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // si el session storage  hay datos llena el arreglo del servicio con la data de lo contrario consumirá el servicio 
-    if (localStorage.getItem('listBanks')) {
-      this.coinService.listBanksConfiguration = JSON.parse(localStorage.getItem('listBanks') as string);
-      this.refreshCoin();
-    } else this.listBanks();
-
+    this.refreshCoin()
   }
   /**
    *Obtiene una entidad bancaria
@@ -94,17 +89,27 @@ export class StatusCoinComponent implements OnInit {
           bank.price = parseFloat(price_string).toFixed(2) as unknown as number;
           bank.percentage = bank.percentage;
           bank.symbol = symbol;
+          bank.active = false
 
-          //según la configuración se activa o desactiva
+          //según la configuración de BANCOS se activa o desactiva
           if (validBankingRoles.includes(bank.key)) bank.active = true;
 
           //guardado de localstorage y servicios
           this.coinService.listBanksConfiguration.push(bank);
-          let banks = JSON.stringify(this.coinService.listBanksConfiguration)
-          localStorage.setItem('listBanks', banks);
 
-        })
+        });
+
+        //setea los BANCOS_PERSONALIZADOS
+        if (this.personaliceBank.length > 0) {
+          this.coinService.listBanksConfiguration = this.coinService.listBanksConfiguration.concat(this.personaliceBank)
+          this.personaliceBank = [];
+        }
+
+        //se guarda en el local storage
+        let banks = JSON.stringify(this.coinService.listBanksConfiguration)
+        localStorage.setItem('listBanks', banks);
         this.getBank(this.typeStatus, this.coinService.listBanksConfiguration);
+
         this.loading = false
       },
       error: (err) => {
@@ -203,24 +208,30 @@ export class StatusCoinComponent implements OnInit {
 
   }
   /**
-   *Refresca los servicios
+   *Refresca los servicios 
    *
    * @memberof StatusCoinComponent
    */
   refreshCoin() {
-    let beforeBanks: BankingRole[] = [];
-    localStorage.removeItem('listBanks');
 
-    this.coinService.listBanksConfiguration.forEach((entidad: any) => {
-      if (entidad.key == BankingRole.personalice_bank) {
-        this.personaliceBank.push(entidad)
-      }
-      if (entidad.active == true) {
-        beforeBanks.push(entidad.key as BankingRole);
-      }
-    });
-    this.coinService.listBanksConfiguration = [];
-    this.listBanks(beforeBanks);
+    //configuración de bancos
+    let BankingRoleBeforeBank: BankingRole[] = []
+    let banksStorage: Bank[] = JSON.parse(localStorage.getItem('listBanks') as string);
+
+    if (banksStorage !== null) {
+
+      localStorage.removeItem('listBanks');
+      this.coinService.listBanksConfiguration = [];
+
+      banksStorage.forEach((entidad: any) => {
+        //bancos activos
+        if (entidad.active) BankingRoleBeforeBank.push(entidad.key as BankingRole);
+        //bancos personalizados 
+        if (entidad.key == BankingRole.personalice_bank) this.personaliceBank.push(entidad)
+      });
+    }
+
+    this.listBanks(BankingRoleBeforeBank);
 
   }
 }

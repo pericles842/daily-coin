@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   ) {
     setInterval(() => {
       this.checkForUpdates()
-    }, 6000) //6s
+    }, 8000) //6s
   }
 
 

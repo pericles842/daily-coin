@@ -35,7 +35,7 @@ export class TasaPersonalizadaComponent {
     this.newMonto.active = true;
     this.newMonto.date= dateConvert(dateToday);
     this.newMonto.key = BankingRole.personalice_bank;
-
+    
     this.coinService.listBanksConfiguration.push(this.newMonto);
     this.messageService.add({ severity: 'success', summary: '', detail: 'Guardado con éxito' });
 
