@@ -101,7 +101,7 @@ export class StatusCoinComponent implements OnInit {
 
         //setea los BANCOS_PERSONALIZADOS
         if (this.personaliceBank.length > 0) {
-          this.coinService.listBanksConfiguration = this.coinService.listBanksConfiguration.concat(this.personaliceBank)
+          this.coinService.listBanksConfiguration = this.personaliceBank.concat( this.coinService.listBanksConfiguration )
           this.personaliceBank = [];
         }
 
