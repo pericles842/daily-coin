@@ -1,16 +1,31 @@
 <div class="mb-6">
-
-  <div *ngFor="let entidad of history" class="flex flex-column gap-2">
-    <div class="bg-white shadow-3 sticky top-0 p-3 border-round ">
-      <p class="font-semibold text-xl text-primary">{{ entidad.date | date:'yyyy-MM-dd'}}</p>
+  <!-- MENU DE MONEDAS -->
+  <div class="grid ">
+    <div class="col touch " *ngFor="let item of menu_monedas; let i = index">
+      <p (click)="changeCoinHistory(item.key)" class="bg-primary-reverse text-xl font-semibold
+       shadow-3 border-round-md p-2 text-center">{{item.label}}</p>
     </div>
+  </div>
 
-    <div *ngFor="let item of entidad.day" class="flex justify-content-between grid p-1">
-      <div class="bg-primary m-1 col border-round p-3 ">
-        <p class="text-lg font-semibold"> {{ item.name}}</p>
-        <p class="text-2xl font-semibold"> {{ item.price}} Bs </p>
+  <!-- historial -->
+  <div class="flex flex-column gap-2 ">
+    <div class="flex flex-column shadow-3 p-3 border-round" *ngFor="let moneda of dataMoneda; let i = index">
+      <div class="flex gap-2 justify-content-between align-items-center">
+        <p class="text-3xl text-primary">{{moneda.day_week | getDay}}</p>
+        <p class="bg-primary border-round p-1"> {{moneda.created_at }}</p>
+      </div>
+      <div class="grid text-color text-2xl font-medium my-1">
+        <div class="col">{{moneda.name }}</div>
+        <div class="col">{{moneda.price }}</div>
+        <div style="font-size: 1.8rem;" class="col border-round text-center "
+          [ngClass]="ColorStatistics(moneda.statistics)"> {{' '}} </div>
+
       </div>
     </div>
   </div>
-  <app-loading [loading]="loading"></app-loading>
- 
+
+</div>
+
+
+
+<app-loading [loading]="loading"></app-loading>
