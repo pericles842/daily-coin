@@ -37,6 +37,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ParsePricePipe } from './pipes/parse-price.pipe';
 import { CalculadoraComponent } from './components/calculadora/calculadora.component';
 import { GetDayWeekPipe } from './pipes/get-day-week.pipe';
+import { DatesPipe } from './pipes/dates.pipe';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { GetDayWeekPipe } from './pipes/get-day-week.pipe';
     LabelHeaderPipe,
     ParsePricePipe,
     CalculadoraComponent,
-    GetDayWeekPipe
+    GetDayWeekPipe,
+    DatesPipe
   ],
   imports: [
     BrowserModule,

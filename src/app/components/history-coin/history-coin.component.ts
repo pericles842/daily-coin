@@ -31,7 +31,8 @@ export class HistoryCoinComponent implements OnInit {
    * @type {{ label: string, key: number }[]}
    * @memberof HistoryCoinComponent
    */
-  menu_monedas: { label: string, key: string }[] = []
+  menu_monedas: { label: string, key: string, active: boolean }[] = [];
+
 
   loading: boolean = false
 
@@ -62,7 +63,8 @@ export class HistoryCoinComponent implements OnInit {
             //llenamos el menu
             this.menu_monedas.push({
               label: label,
-              key: label
+              key: label,
+              active: false
             })
           })
 
@@ -86,6 +88,14 @@ export class HistoryCoinComponent implements OnInit {
    */
   changeCoinHistory(key: string) {
     this.dataMoneda = this.historial_monedas[key]
+    this.menu_monedas.forEach((menuMoneda) => {
+
+      if (menuMoneda.key == key) {
+        menuMoneda.active = true
+      } else {
+        menuMoneda.active = false
+      }
+    })
 
   }
   /**

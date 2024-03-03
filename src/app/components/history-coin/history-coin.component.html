@@ -2,7 +2,7 @@
   <!-- MENU DE MONEDAS -->
   <div class="grid ">
     <div class="col touch " *ngFor="let item of menu_monedas; let i = index">
-      <p (click)="changeCoinHistory(item.key)" class="bg-primary-reverse text-xl font-semibold
+      <p (click)="changeCoinHistory(item.key)" [ngClass]="item.active?' bg-primary ' :' bg-primary-reverse '" class=" text-xl font-semibold
        shadow-3 border-round-md p-2 text-center">{{item.label}}</p>
     </div>
   </div>

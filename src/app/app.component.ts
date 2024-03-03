@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { dateConvert } from './functions/date';
-import { SwPush, SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { MessageService } from 'primeng/api';
-import { filter, interval } from 'rxjs';
-import { environment } from 'environment';
-import { Token } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { SwPush, SwUpdate } from '@angular/service-worker';
+import { environment } from 'environment';
+import { MessageService } from 'primeng/api';
+import { dateConvert } from './functions/date';
+import { AppConfigService } from './services/app-config.service';
 
 
 @Component({
@@ -36,20 +35,36 @@ export class AppComponent implements OnInit {
     private readonly swUpdate: SwUpdate,
     private swPush: SwPush,
     private messageService: MessageService,
-    private router: Router
-  ) {
-    setInterval(() => {
-      this.checkForUpdates()
-    }, 8000) //6s
-  }
+    private router: Router,
+    private appConfigService: AppConfigService
+  ) {  }
 
 
 
   ngOnInit(): void {
     localStorage.setItem('timeSession', dateConvert(this.sessionDate))
     if (localStorage.getItem('contract') === null || Number(localStorage.getItem('contract')) === 0) this.contrato = true
-    //this.confirmationNotificación()
+   // this.confirmationNotificación()
+    this.updatesVersion()
+  }
 
+  /**
+   *Busca actualizaciones en base de datos 
+   *
+   * @memberof AppComponent
+   */
+  updatesVersion() {
+    this.appConfigService.getVersion().subscribe({
+      next: (res:any) => {
+        console.log(res.version);
+        
+        //! termiar
+        if (res.version.to  === environment.version) this.updates = true
+      }, error: (err) => {
+        
+        this.messageService.add({ severity: 'error', summary: 'Error al cargar la version', detail: 'Por favor refrescar la pagina' });
+      }
+    })
   }
   /**
    *Busca actualizaciones

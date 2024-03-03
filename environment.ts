@@ -10,5 +10,5 @@ export const environment = {
 
 export const environmentLocal = {
   production: false,
-  url: ' http://127.0.0.1:8000/',
+  url: 'http://127.0.0.1:8000/',
 };

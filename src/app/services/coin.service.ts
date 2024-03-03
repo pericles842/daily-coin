@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environmentLocal } from 'environment';
-import { BehaviorSubject, Observable, Subject, combineLatest, forkJoin, from, map } from 'rxjs';
-import { BankingRole } from '../enum/entiesBanking';
+import { Observable, forkJoin } from 'rxjs';
 import { Bank } from '../models/bank';
 
 @Injectable({
