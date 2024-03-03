@@ -51,7 +51,6 @@ export class ConfigBancosComponent implements OnInit {
    * @memberof ConfigBancosComponent
    */
   banksSelected(index: number) {
-    console.log('banksSelected');
     //banco del  sesion storage
     let banksStorage = JSON.parse(localStorage.getItem('listBanks') as string)
     let statusBank: boolean = banksStorage[index].active
