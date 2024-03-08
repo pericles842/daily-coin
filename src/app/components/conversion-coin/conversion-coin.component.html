@@ -31,7 +31,7 @@
     style="font-size: 1.5rem"></i>
 
   <p #bs (click)="copyContent()" [ngClass]="conversionMoney.total >= 1000 ? 'text-4xl' :'text-6xl'"
-    class="align-items-stretch  flex justify-content-center text-color font-medium hover:text-primary cursor-pointer">
+    class="align-items-stretch flex justify-content-center text-color font-medium hover:text-primary cursor-pointer">
     {{conversionMoney.total | number:'1.2-2' | parsePrice }}
     <span class="text-primary">{{conversionMoney.currency}}</span>
   </p>

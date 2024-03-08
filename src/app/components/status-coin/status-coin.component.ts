@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BankingRole } from 'src/app/enum/entiesBanking';
@@ -27,7 +27,7 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   @Output() bankingEntity = new EventEmitter<Bank>();
-
+  
   /**
    *Parametro de entrada de  una entidad bacnararia
    *
@@ -47,6 +47,11 @@ export class StatusCoinComponent implements OnInit {
 
   ngOnInit() {
     this.refreshCoin()
+  }
+
+  tutorialFocus(event_id:any) {
+    console.log(event_id);
+    document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
   }
   /**
    *Obtiene una entidad bancaria
@@ -101,7 +106,7 @@ export class StatusCoinComponent implements OnInit {
 
         //setea los BANCOS_PERSONALIZADOS
         if (this.personaliceBank.length > 0) {
-          this.coinService.listBanksConfiguration = this.personaliceBank.concat( this.coinService.listBanksConfiguration )
+          this.coinService.listBanksConfiguration = this.personaliceBank.concat(this.coinService.listBanksConfiguration)
           this.personaliceBank = [];
         }
 

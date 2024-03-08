@@ -7,7 +7,7 @@ import { Bank } from 'src/app/models/bank';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit {
 
   entidadBancaria!: BankingRole
 
@@ -15,11 +15,14 @@ export class HomeComponent implements OnInit  {
 
 
   ngOnInit() {
+     
     this.entidadBancaria = BankingRole.bcv;
 
   }
- 
 
+  inactiveScrollBody() {
+    document.body.style.overflow = 'hidden';
+  }
   /**
    *Captura el banco actualS
    *

@@ -10,6 +10,30 @@ import { InputTextModule } from 'primeng/inputtext';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { InfoComponent } from './components/info/info.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AccordionModule } from 'primeng/accordion';
+import { TagModule } from 'primeng/tag';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
+
+
+import { ParsePricePipe } from './pipes/parse-price.pipe';
+import { LabelHeaderPipe } from './pipes/label-header.pipe';
+import { GetDayWeekPipe } from './pipes/get-day-week.pipe';
+import { DatesPipe } from './pipes/dates.pipe';
+
+
+
+import { TutorialComponent } from './components/tutorial/tutorial.component';
+import { CalculadoraComponent } from './components/calculadora/calculadora.component';
+import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
 import { AppComponent } from './app.component';
 import { ConversionCoinComponent } from './components/conversion-coin/conversion-coin.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -19,26 +43,9 @@ import { AppRoutingModule } from './routes';
 import { HomeComponent } from './pages/home/home.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { ConfigBancosComponent } from './components/config-bancos/config-bancos.component';
-import { CheckboxModule } from 'primeng/checkbox';
-import { HistoryCoinComponent } from './components/history-coin/history-coin.component';
-import { CalendarModule } from 'primeng/calendar';
 import { TasaPersonalizadaComponent } from './components/tasa-personalizada/tasa-personalizada.component';
-import { MessageService } from 'primeng/api';
-import { MessagesModule } from 'primeng/messages';
-import { InfoComponent } from './components/info/info.component';
-import { InputMaskModule } from 'primeng/inputmask';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { AccordionModule } from 'primeng/accordion';
-import { TagModule } from 'primeng/tag';
 import { ConfigThemeComponent } from './components/config-theme/config-theme.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LabelHeaderPipe } from './pipes/label-header.pipe';
-import { DialogModule } from 'primeng/dialog';
-import { ParsePricePipe } from './pipes/parse-price.pipe';
-import { CalculadoraComponent } from './components/calculadora/calculadora.component';
-import { GetDayWeekPipe } from './pipes/get-day-week.pipe';
-import { DatesPipe } from './pipes/dates.pipe';
-
 
 @NgModule({
   declarations: [
@@ -59,7 +66,8 @@ import { DatesPipe } from './pipes/dates.pipe';
     ParsePricePipe,
     CalculadoraComponent,
     GetDayWeekPipe,
-    DatesPipe
+    DatesPipe,
+    TutorialComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +87,7 @@ import { DatesPipe } from './pipes/dates.pipe';
     MessagesModule,
     InputMaskModule,
     DialogModule,
+    ConfirmPopupModule,
     TagModule,
     AccordionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('carga app');
+    
     localStorage.setItem('timeSession', dateConvert(this.sessionDate))
     if (localStorage.getItem('contract') === null || Number(localStorage.getItem('contract')) === 0) this.contrato = true
     // this.confirmationNotificación()

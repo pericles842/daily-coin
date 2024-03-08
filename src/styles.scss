@@ -5,6 +5,23 @@
 
 }
 
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo negro semi-transparente */
+  z-index: 3;
+   
+}
+
+.tutorial-content {
+  position: relative;
+  z-index: 6;
+}
+
 .background-dailyCoin {
   background-image: url('assets/d.png');
   background-color: rgba(255, 255, 255, 0.17);

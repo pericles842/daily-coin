@@ -10,7 +10,7 @@
 
 <!-- CARTA DE BANCOS -->
 <!-- (click)="op.toggle($event)" -->
-<div (click)="op.toggle($event)"
+<div #status_section (click)="op.toggle($event)"
   class="touch background-dailyCoin bg-primary shadow-4 w-full p-4 border-round flex flex-column gap-3">
   <div class="flex justify-content-between">
     <div class="flex gap-1 flex-column">
@@ -37,4 +37,4 @@
   <!-- Restablecer -->
   <button (click)="refreshCoin()" pButton pRipple class="pi pi-replay text-lg shadow-4 touch"></button>
 </div>
-<app-loading [loading]="loading"></app-loading>
+<!-- <app-loading [loading]="loading"></app-loading> -->
