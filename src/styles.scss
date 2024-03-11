@@ -5,6 +5,7 @@
 
 }
 
+//Oscurece la pantalla para el tutorial
 .tutorial-overlay {
   position: fixed;
   top: 0;
@@ -14,14 +15,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   /* Fondo negro semi-transparente */
   z-index: 3;
-   
+
 }
 
+//Resalta el elemento cuando el  tutorial-overlay  esta habilitado
 .tutorial-content {
   position: relative;
   z-index: 6;
 }
 
+//foto en tarjeta de estatus y headers
 .background-dailyCoin {
   background-image: url('assets/d.png');
   background-color: rgba(255, 255, 255, 0.17);
@@ -42,6 +45,7 @@ input[type="text"],
   box-shadow: none !important;
 }
 
+//efecto de circulo
 .circle:hover {
   border-radius: 50%;
   background-color: var(--primary-color-text);
@@ -53,6 +57,7 @@ a {
   color: inherit;
 }
 
+//efecto touch
 .touch {
   transition: transform 0.1s ease;
 }
@@ -61,6 +66,7 @@ a {
   transform: scale(1.02);
 }
 
+//efecto touch mas grande 
 .touchx2 {
   transition: transform 0.1s ease;
 }
@@ -69,6 +75,7 @@ a {
   transform: scale(1.5);
 }
 
+//estilos de scroll
 /* Ancho del scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
@@ -81,10 +88,4 @@ a {
 
 @import 'node_modules/primeng/resources/primeng.min.css';
 @import 'node_modules/primeflex/primeflex.css';
-//@import 'node_modules/primeng/resources/themes/daily-coin/theme.css';
-//teema
 @import "primeicons/primeicons.css";
-//@import 'node_modules/primeng/resources/nano/theme.css';
-//@import 'node_modules/primeng/resources/themes/lara-light-indigo/theme.css';
-//@import 'node_modules/primeng/resources/themes/mira/theme.css';
-//@import 'node_modules/primeng/resources/themes/vela-orange/theme.css';

@@ -43,6 +43,7 @@ export class StatusCoinComponent implements OnInit {
     private coinService: CoinService,
     private _messageServiceSocial: MessageServiceSocial,
     private messageService: MessageService,
+    public elementRef:ElementRef
   ) { }
 
   ngOnInit() {

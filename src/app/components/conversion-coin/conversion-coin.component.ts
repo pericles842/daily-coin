@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { CurrencyConversion } from 'src/app/models/CurrencyConversion';
 import { Bank } from 'src/app/models/bank';
@@ -31,29 +31,24 @@ export class ConversionCoinComponent implements OnInit, OnChanges {
   loading: boolean = false;
 
   constructor(
-    private messageService: MessageService
+    private messageService: MessageService,
+    public elementRef: ElementRef
   ) { }
   ngOnInit() {
-    // if (this.banco !== undefined) {
-    //   this.loading = true;
-    //   this.conversionMoney.money_conversion =  this.banco.price 
-    //   this.moneyConversion(this.banco.price, this.bsToDollar)
-    //   this.loading = false;
-    // }
-    // this.loading = false;
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
     if (changes["banco"].currentValue?.key !== changes["banco"].previousValue?.key) {
-    
+
       if (!this.loading) {
         this.conversionMoney.money_conversion = this.banco.price
         this.loading = true;
       }
-       
+
       this.moneyConversion(this.conversionMoney.money_conversion, this.bsToDollar)
-     } 
+    }
   }
   /**
    *Realiza la conversion de dollar a bolivares y diversa

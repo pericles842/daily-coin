@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tutorial',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./tutorial.component.scss']
 })
 export class TutorialComponent {
-
+  
+  @Input() tutorial: boolean = false
 }

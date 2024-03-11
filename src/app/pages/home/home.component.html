@@ -1,9 +1,18 @@
-<app-tutorial></app-tutorial> 
-  <div>
-    <app-status-coin  (bankingEntity)="currentBankingEntity($event)"
-      [typeStatus]="entidadBancaria"></app-status-coin>
-    <div class="mt-6">
-      <app-conversion-coin [banco]="bancoActual"></app-conversion-coin>
+<app-tutorial [tutorial]="start_tutorial"></app-tutorial>
+
+<p-dialog [header]="itemContendTutorial.header" [visible]="viewModal" [style]="{width: '50vw'}"
+[style]=" position_modal"  [draggable]="false" [resizable]="false">
+  <div class="flex flex-column">
+    <div>
+      <h5>{{itemContendTutorial.contend}}</h5>
     </div>
   </div>
- 
+</p-dialog>
+
+<div>
+  <app-status-coin (bankingEntity)="currentBankingEntity($event)" [typeStatus]="entidadBancaria"></app-status-coin>
+  <div class="mt-6">
+    <app-conversion-coin #anchor_tutorial [banco]="bancoActual"></app-conversion-coin>
+  </div>
+
+</div>
