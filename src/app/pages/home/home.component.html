@@ -1,18 +1,30 @@
-<app-tutorial [tutorial]="start_tutorial"></app-tutorial>
+<p-dialog #dialog_tutorial [visible]="viewModal" [style]="position_modal" [draggable]="false" [resizable]="false"
+  [closable]="false" contentStyleClass="p-3" styleClass="text-center">
+  <!-- HEADER -->
+  <ng-template pTemplate="header">
+    <h3 class="flex flex-wrap text-primary">{{itemContendTutorial.header}}</h3>
+  </ng-template>
 
-<p-dialog [header]="itemContendTutorial.header" [visible]="viewModal" [style]="{width: '50vw'}"
-[style]=" position_modal"  [draggable]="false" [resizable]="false">
-  <div class="flex flex-column">
-    <div>
-      <h5>{{itemContendTutorial.contend}}</h5>
+  <!-- contendido -->
+  <div class=" flex flex-column gap-5">
+    <!-- parrafo -->
+    <div class="flex flex-column gap-2 my-2">
+      <p class="flex flex-wrap text-color">{{itemContendTutorial.contend}}</p>
+    </div>
+    <!-- botones -->
+    <div class="flex justify-content-between gap-2 align-items-center ">
+      <button pButton pRipple label="Anterior" class="flex-none bg-primary-reverse  p-2"></button>
+      <button pButton pRipple label="Saltar" class="flex-none bg-primary-reverse  p-2"></button>
+      <button pButton pRipple label="Siguiente" class="flex-none bg-primary-reverse p-2" (click)="nextTutorial()"></button>
     </div>
   </div>
 </p-dialog>
-
 <div>
-  <app-status-coin (bankingEntity)="currentBankingEntity($event)" [typeStatus]="entidadBancaria"></app-status-coin>
+  <app-status-coin #status_coin (bankingEntity)="currentBankingEntity($event)"
+    [typeStatus]="entidadBancaria"></app-status-coin>
   <div class="mt-6">
-    <app-conversion-coin #anchor_tutorial [banco]="bancoActual"></app-conversion-coin>
+    <app-conversion-coin #conversion_coin [banco]="bancoActual"></app-conversion-coin>
   </div>
 
 </div>
+<app-tutorial [tutorial]="this.appConfigService.tutorial"></app-tutorial>
