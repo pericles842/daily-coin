@@ -38,7 +38,7 @@ export class CoinService {
    * @memberof CoinService
    */
   listBankingEntities() {
-    return this.http.get(environment.url + 'api/v1/dollar/page?page=exchangemonitor')
+    return this.http.get(environment.url + 'api/v1/dollar?page=exchangemonitor')
   }
   /**
    *Obtiene una entidad bancaria
@@ -46,7 +46,7 @@ export class CoinService {
    * @memberof CoinService
    */
   getBanking(entity: BankingRole) {
-    return this.http.get(environment.url + `api/v1/dollar/page?page=exchangemonitor&monitor=${entity}`);
+    return this.http.get(environment.url + `api/v1/dollar?page=${entity}`);
   }
   /**
    *historial de los precios del dolar en la semana
@@ -63,7 +63,7 @@ export class CoinService {
    * @memberof CoinService
    */
   getBankBCV() {
-    return this.http.get(environment.url + `api/v1/dollar/page?page=bcv`);
+    return this.http.get(environment.url + `api/v1/dollar?page=bcv`);
 
   }
   /**
