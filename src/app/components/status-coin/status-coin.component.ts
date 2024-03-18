@@ -27,7 +27,14 @@ export class StatusCoinComponent implements OnInit {
    * @memberof StatusCoinComponent
    */
   @Output() bankingEntity = new EventEmitter<Bank>();
-  
+
+  /**
+   *emite un booleano al cargar las tasas
+   *
+   * @memberof StatusCoinComponent
+   */
+  @Output() finishLoadingCoin = new EventEmitter<boolean>();
+
   /**
    *Parametro de entrada de  una entidad bacnararia
    *
@@ -43,17 +50,13 @@ export class StatusCoinComponent implements OnInit {
     private coinService: CoinService,
     private _messageServiceSocial: MessageServiceSocial,
     private messageService: MessageService,
-    public elementRef:ElementRef
+    public elementRef: ElementRef
   ) { }
 
   ngOnInit() {
     this.refreshCoin()
   }
 
-  tutorialFocus(event_id:any) {
-    console.log(event_id);
-    document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
-  }
   /**
    *Obtiene una entidad bancaria
    *
@@ -117,6 +120,9 @@ export class StatusCoinComponent implements OnInit {
         this.getBank(this.typeStatus, this.coinService.listBanksConfiguration);
 
         this.loading = false
+        
+        //emite un booleano al cargar las tasas
+        this.finishLoadingCoin.emit(true);
       },
       error: (err) => {
         this.loading = false

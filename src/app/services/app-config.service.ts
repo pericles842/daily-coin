@@ -64,8 +64,8 @@ export class AppConfigService {
     {
       id: 1,
       header: 'Tarjeta informativa',
-      contend: `Descubre el precio actual del dólar según la entidad que elijas,
-               así como el día y la hora. Además, tienes la opción de explorar las tarifas de otros bancos.`
+      contend: `Descubre el precio actual del dólar además de la información según la entidad que elijas,
+       así como poder cambiar de entidad.`
     },
     {
       id: 2,
@@ -82,28 +82,14 @@ export class AppConfigService {
     {
       id: 4,
       header: 'Monto',
-      contend: `Ingrese el monto a transformar. Este al tanto de las conversiones.
-              El ícono en el lado derecho indicará si estás en bolívares o dólares`
+      contend: `Aquí obtendrá el monto total previamente ingresado en dólares o bolívares.
+      Si se ha equivocado en el monto, puede ajustarlo aumentándolo o disminuyéndolo.`
     },
     {
       id: 5,
-      header: 'Total',
-      contend: `"Aquí obtendrá el monto total previamente ingresado en dólares o bolívares.
-       Si se ha equivocado en el monto, puede ajustarlo aumentándolo o disminuyéndolo.`
-    },
-    {
-      id: 6,
-      header: 'Menu de opciones',
-      contend: `En el menú, puedes navegar hacia el historial de conversiones o las configuraciones.
-         Aquí encontrarás opciones para cambiar temas, seleccionar bancos y configurar tasas personalizadas`
-    },
-    {
-      id: 7,
-      header: 'Finalizando',
-      contend: `¡Gracias por usar nuestra aplicación! Recuerda que estamos atentos a los comentarios de toda la comunidad.
-             ¡Tu opinión es muy importante para nosotros`
-    },
-
+      header: 'Final',
+      contend: `Muchas gracias por usar nuestra app`
+    }
   ];
 
 
