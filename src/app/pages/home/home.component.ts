@@ -125,12 +125,12 @@ export class HomeComponent implements OnInit {
       accept: () => {
         this.confirmationService.close()
 
-        setTimeout(() => {
-          this.nextTutorial()
-        }, 500);
+        setTimeout(() => { this.nextTutorial() }, 500);
       },
       reject: () => {
-        //! TUTORIAL PARA ATRAS
+        this.confirmationService.close()
+
+        setTimeout(() => { this.beforeTutorial() }, 500);
       }
     });
   }
@@ -154,6 +154,34 @@ export class HomeComponent implements OnInit {
 
     this.openModalRunTutorial(this.getDataTutorial, positionTutorial)
 
+  }
+  /**
+   * paso atrás del tutorial
+   *
+   * @memberof HomeComponent
+   */
+  beforeTutorial() {
+
+
+    if (this.appConfigService.position_tutorial == 0) {
+
+      this.appConfigService.position_tutorial = 0
+    } else {
+      
+      this.appConfigService.position_tutorial--
+
+    }
+
+
+    //*Finaliza el tutorial
+
+    let positionTutorial = this.appConfigService.position_tutorial == 0 ? 1 : this.appConfigService.position_tutorial
+
+    //* section_tutorial_ + un  numero
+    this.removeClassTutorial(positionTutorial + 1)
+    this.addClassTutorial(positionTutorial)
+
+    this.openModalRunTutorial(this.getDataTutorial, positionTutorial)
   }
   /**
    *Elimina la case que reslta el item al tuturial

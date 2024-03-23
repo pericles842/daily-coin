@@ -1,9 +1,9 @@
 
 import { HttpClient } from '@angular/common/http';
-import { ElementRef, Injectable, ViewChild } from '@angular/core';
-import { environmentLocal } from 'environment';
-import { Tutorial } from '../interfaces/tutorial';
+import { Injectable, ViewChild } from '@angular/core';
+import { environment_production as environment } from 'environment';
 import { Dialog } from 'primeng/dialog';
+import { Tutorial } from '../interfaces/tutorial';
 
 
 @Injectable({
@@ -25,7 +25,7 @@ export class AppConfigService {
    * @memberof AppConfigService
    */
   getVersion() {
-    return this.http.get(environmentLocal.url + 'api/app-config/get-version')
+    return this.http.get(environment.url + 'api/app-config/get-version')
   }
   /**
    *Comenzar tutorial

@@ -42,8 +42,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-     
-    
+
+
     localStorage.setItem('timeSession', dateConvert(this.sessionDate))
     if (localStorage.getItem('contract') === null || Number(localStorage.getItem('contract')) === 0) this.contrato = true
     // this.confirmationNotificación()
@@ -60,22 +60,21 @@ export class AppComponent implements OnInit {
       next: (res: any) => {
 
         // variables de versiones
-        let sqlVersion: number = parseInt(res.version.replace('.', ''));
-        let versionDc: number = parseInt(environment.version.replace('.', ''));
+        let sqlVersion: number = parseInt(res.version.replace(/\./g, ''));
+        let versionDc: number = parseInt(environment.version.replace(/\./g, ''));
 
         //ejecución del proceso
-
         if (sqlVersion != versionDc) {
           this.updates = true
         } else {
           this.updates = false
         }
 
-        }, error: (err) => {
+      }, error: (err) => {
 
-          this.messageService.add({ severity: 'error', summary: 'Error al cargar la version', detail: 'Por favor refrescar la pagina' });
-        }
-      })
+        this.messageService.add({ severity: 'error', summary: 'Error al cargar la version', detail: 'Por favor refrescar la pagina' });
+      }
+    })
   }
   /**
    *Busca actualizaciones

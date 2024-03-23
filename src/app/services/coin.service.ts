@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environmentLocal } from 'environment';
+import { environment_production as environment } from 'environment';
 import { Observable, forkJoin } from 'rxjs';
 import { Bank } from '../models/bank';
 
@@ -35,7 +35,7 @@ export class CoinService {
    * @memberof CoinService
    */
   listBankingEntities() {
-    return this.http.get(environmentLocal.url + 'api/entity/list-entities')
+    return this.http.get(environment.url + 'api/entity/list-entities')
   }
   /**
    *historial de los precios del dolar en la semana
@@ -43,7 +43,7 @@ export class CoinService {
    * @memberof CoinService
    */
   historyEntities() {
-    return this.http.get(environmentLocal.url + 'api/history/get ');
+    return this.http.get(environment.url + 'api/history/get ');
   }
   /**
    *Retorna los precios del banco central
@@ -52,7 +52,7 @@ export class CoinService {
    * @memberof CoinService
    */
   getBankBCV() {
-    return this.http.get(environmentLocal.url + `api/entity/get-bcv`);
+    return this.http.get(environment.url + `api/entity/get-bcv`);
 
   }
 
